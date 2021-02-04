@@ -35,6 +35,8 @@ function createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrice
     tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
     rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
 
+    rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
+
     return rowsOfTableDataForCryptoCurrenciesTable;
 }
 
@@ -58,7 +60,7 @@ function createTableHeadingRowForCryptoCurrenciesTable(dataToBePutInTableHeading
     tableHeadingRowForCryptoCurrenciesTable += tableHeading;
 
     //testing 
-    // tableHeadingRowForCryptoCurrenciesTable += tableHeading;
+    tableHeadingRowForCryptoCurrenciesTable += tableHeading;
     
     tableHeadingRowForCryptoCurrenciesTable += '</tr>';
 
@@ -73,11 +75,6 @@ function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
 
     const rowsOfTableDataOfCryptoCurrenciesTable = createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices);
     tableWithCryptoCurrenciesToBeDisplayed += rowsOfTableDataOfCryptoCurrenciesTable;
-
-    // test
-    tableWithCryptoCurrenciesToBeDisplayed += tableHeadingOfCryptoCurrenciesTable;
-    tableWithCryptoCurrenciesToBeDisplayed += rowsOfTableDataOfCryptoCurrenciesTable;
-
 
     tableWithCryptoCurrenciesToBeDisplayed += '</table>';
 
