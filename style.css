@@ -1,0 +1,22 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    width: 70vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-self: start;
+    align-items: center;
+    border: 1px solid black;
+}
