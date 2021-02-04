@@ -1,6 +1,21 @@
 import { fetchSpecificTicker, getHighestBidPriceOfFetchedTicker } from '../binance/binanceApiHandler.js';
 
+function getListOfMostPopularCryptoCurrencies() {
+    const listOfMostPopularCryptoTickerNames = [
+        'BTCUSDT',
+        'ETHUSDT',
+        'XRPUSDT',
+        'XLMUSDT',
+        'ADAUSDT',
+        'DOTUSDT',
+        'NEOUSDT',
+        'LINKUSDT',
+        'XMRUSDT',
+        'BNBUSDT'
+    ];
 
+    return listOfMostPopularCryptoTickerNames;
+}
 
 
 
