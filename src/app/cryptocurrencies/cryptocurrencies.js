@@ -29,7 +29,21 @@ function createTableDataForCryptoCurrenciesTable() {
     return rowsOfTableDataOfCryptoCurrenciesTable;
 }
 
+async function createTableHeadingForCryptoCurrenciesTable() {
+    const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidPricesOfMostPopularCrypto();
+    let tableHeadingOfCryptoCurrenciesTable = '<tr>';
 
+    for(const popularCrypto of listOfMostPopularCryptoBidPrices) {
+        let tableDataWithPopularCrypto = '<td>';
+        
+
+        tableDataWithPopularCrypto += '</td>';
+    }
+
+    tableHeadingOfCryptoCurrenciesTable += '</tr>';
+
+    return tableHeadingOfCryptoCurrenciesTable;
+}
 
 function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
     let tableSectionDomElement = document.getElementsByTagName('section')[0];
