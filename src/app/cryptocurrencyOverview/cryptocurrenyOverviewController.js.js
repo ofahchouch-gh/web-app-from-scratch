@@ -1,4 +1,4 @@
-import { fetchSpecificTicker, getHighestBidPriceOfFetchedTicker } from '../binance/binanceApiHandler.js';
+import { fetchBidAndAskPriceOfSpecificTicker, getHighestBidPriceOfFetchedTicker } from '../binance/binanceApiHandler.js';
 
 function getListOfMostPopularCryptoCurrencies() {
     const listOfMostPopularCryptoTickerNames = [
@@ -17,19 +17,18 @@ function getListOfMostPopularCryptoCurrencies() {
     return listOfMostPopularCryptoTickerNames;
 }
 
-function createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
+function createTableDataForCryptoCurrenciesTable(listOfDataAboutCryptoObject) {
     let rowsOfTableDataForCryptoCurrenciesTable;
     let currentPropertyToBeSetInTableDataCounter = 0;
     
-    for(const propertyOfPopularCrypto in listOfMostPopularCryptoBidPrices[0]) {
+    for(const propertyOfPopularCrypto in listOfDataAboutCryptoObject[0]) {
         let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
         let listOfTableDataWithPopularCrypto;
     
-        for(const popularCrypto of listOfMostPopularCryptoBidPrices) {
+        for(const popularCrypto of listOfDataAboutCryptoObject) {
             let tableDataWithPopularCrypto = '<td>';
     
             let currentPropertyToString = Object.keys(popularCrypto)[currentPropertyToBeSetInTableDataCounter];
-            
             tableDataWithPopularCrypto +=  eval('popularCrypto.' + currentPropertyToString);
 
             tableDataWithPopularCrypto += '</td>';
@@ -37,7 +36,7 @@ function createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrice
         }
 
         currentPropertyToBeSetInTableDataCounter++;
-        
+
         tableRowWithTableDataForCryptoCurrenciesTable += listOfTableDataWithPopularCrypto;
         tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
         rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
@@ -89,8 +88,8 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
     let listOfMostPopularCryptoBidPrices = [];
     
     for(const popularCryptoTickerName of listOfMostPopularCryptoTickerNames) {
-        const fetchedTicker = await fetchSpecificTicker(popularCryptoTickerName);
-        const highestBidPriceOfFetchedTicker = getHighestBidPriceOfFetchedTicker(fetchedTicker);
+        const fetchedBidAndAskPriceOfSpecificTicker = await fetchBidAndAskPriceOfSpecificTicker(popularCryptoTickerName);
+        const highestBidPriceOfFetchedTicker = getHighestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker);
 
         listOfMostPopularCryptoBidPrices.push({ popularCryptoTickerName: popularCryptoTickerName,
             highestBidPriceOfFetchedTicker: highestBidPriceOfFetchedTicker

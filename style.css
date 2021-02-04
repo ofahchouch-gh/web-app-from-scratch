@@ -35,7 +35,6 @@ table {
     display: flex;
     flex-direction: column;
     border-left: 1px solid black;
-    border-right: 1px solid black;
 }
 
 tr {
@@ -50,6 +49,7 @@ th {
     color: white;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 tbody {
@@ -64,5 +64,13 @@ tbody tr {
 td {
     text-align: center;
     border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
+
+tbody tr td:hover {
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+}
+
 

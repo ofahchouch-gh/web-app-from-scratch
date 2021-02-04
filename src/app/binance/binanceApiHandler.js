@@ -11,13 +11,14 @@ export async function fetchAllTickers() {
     }).then(fetchedData => {
         fetchedTickers = fetchedData;
     }).catch(error => {
+        // later afhandelen met een exception message
         console.log('failed to fetch data: ', error);
     });
     
     return fetchedTickers;
 }
 
-export async function fetchSpecificTicker(tickerName) {
+export async function fetchBidAndAskPriceOfSpecificTicker(tickerName) {
     let url = `${BINANCE_API_URL_PREFIX}/depth?symbol=${tickerName}&limit=5`;
     let fetchedTicker = null;
 
@@ -28,6 +29,7 @@ export async function fetchSpecificTicker(tickerName) {
     }).then(fetchedData => {
         fetchedTicker = fetchedData;
     }).catch(error => {
+        // later afhandelen met een exception message
         console.log('failed to fetch data: ', error);
     });
     
