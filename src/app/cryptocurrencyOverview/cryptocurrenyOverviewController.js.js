@@ -19,24 +19,24 @@ function getListOfMostPopularCryptoCurrencies() {
 
 function createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
     let rowsOfTableDataForCryptoCurrenciesTable;
-
-    let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
-    let listOfTableDataWithPopularCrypto;
-
-    for(const popularCrypto of listOfMostPopularCryptoBidPrices) {
-        let tableDataWithPopularCrypto = '<td>';
-
-        tableDataWithPopularCrypto += popularCrypto.popularCryptoTickerName;
-        tableDataWithPopularCrypto += '</td>';
-        listOfTableDataWithPopularCrypto += tableDataWithPopularCrypto;
-    }
-
-    tableRowWithTableDataForCryptoCurrenciesTable += listOfTableDataWithPopularCrypto;
-    tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
-    rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
-
-    rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
-
+    
+    for(const propertyOfPopularCrypto in listOfMostPopularCryptoBidPrices[0]) {
+        let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
+        let listOfTableDataWithPopularCrypto;
+    
+        for(const popularCrypto of listOfMostPopularCryptoBidPrices) {
+            let tableDataWithPopularCrypto = '<td>';
+    
+            tableDataWithPopularCrypto += popularCrypto.popularCryptoTickerName;
+            tableDataWithPopularCrypto += '</td>';
+            listOfTableDataWithPopularCrypto += tableDataWithPopularCrypto;
+        }
+    
+        tableRowWithTableDataForCryptoCurrenciesTable += listOfTableDataWithPopularCrypto;
+        tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
+        rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
+    }  
+    
     return rowsOfTableDataForCryptoCurrenciesTable;
 }
 
@@ -78,7 +78,6 @@ function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
 
     tableWithCryptoCurrenciesToBeDisplayed += '</table>';
 
-    console.log(tableWithCryptoCurrenciesToBeDisplayed);
     return tableWithCryptoCurrenciesToBeDisplayed;
 }
 
