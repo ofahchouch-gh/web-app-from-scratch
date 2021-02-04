@@ -38,9 +38,15 @@ table {
     border-right: 1px solid black;
 }
 
+tbody {
+    display: flex;
+    flex-direction: column;
+}
+
 tr {
     flex: 1;
     display: flex;
+    flex-direction: column;
 }
 
 th {
