@@ -9,6 +9,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    font-family: monospace;
 }
 
 header {
@@ -16,7 +18,43 @@ header {
     height: 5vh;
     display: flex;
     justify-content: center;
-    align-self: start;
     align-items: center;
+    background-color: grey;
+    color: white;
     border: 1px solid black;
 }
+
+section {
+    width: 70vw;
+    height: auto;
+}
+
+table {
+    width: 70vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+tr {
+    flex: 1;
+    display: flex;
+}
+
+th {
+    flex: 1;
+    text-align: center;
+    background-color: grey;
+    color: white;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+td {
+    flex: 1;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+

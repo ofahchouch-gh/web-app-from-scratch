@@ -19,24 +19,24 @@ function getListOfMostPopularCryptoCurrencies() {
 
 function createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
     let rowsOfTableDataForCryptoCurrenciesTable;
-    let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
+    
 
     for(const popularCrypto of listOfMostPopularCryptoBidPrices) {
+        let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
         let tableDataWithPopularCrypto = '<td>';
         tableDataWithPopularCrypto += popularCrypto.popularCryptoTickerName;
         tableDataWithPopularCrypto += '</td>';
 
         tableRowWithTableDataForCryptoCurrenciesTable += tableDataWithPopularCrypto;
+        tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
+        rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
     }
-
-    tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
-    rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
 
     return rowsOfTableDataForCryptoCurrenciesTable;
 }
 
-async function createTableHeadingForCryptoCurrenciesTable() {
-    let tableHeadingRowForCryptoCurrenciesTable = '<tr>';
+function createTableHeadingForCryptoCurrenciesTable() {
+    let tableHeadingRowForCryptoCurrenciesTable = '<thead><tr>';
     
     // moet nog dynamisch worden
     let tableHeading = '<th>';
@@ -44,7 +44,7 @@ async function createTableHeadingForCryptoCurrenciesTable() {
     tableHeading += '</th>';
     tableHeadingRowForCryptoCurrenciesTable += tableHeading;
     
-    tableHeadingRowForCryptoCurrenciesTable += '</tr>';
+    tableHeadingRowForCryptoCurrenciesTable += '</tr></thead>';
 
     return tableHeadingRowForCryptoCurrenciesTable;
 }
@@ -60,6 +60,7 @@ function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
 
     tableWithCryptoCurrenciesToBeDisplayed += '</table>';
 
+    console.log(tableWithCryptoCurrenciesToBeDisplayed);
     return tableWithCryptoCurrenciesToBeDisplayed;
 }
 
