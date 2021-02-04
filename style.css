@@ -14,8 +14,8 @@ body {
 }
 
 header {
-    width: 70vw;
-    height: 5vh;
+    width: 50%;
+    height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,12 +25,12 @@ header {
 }
 
 section {
-    width: 70vw;
+    width: 50%;
     height: auto;
 }
 
 table {
-    width: 70vw;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;

@@ -1,0 +1,1 @@
+// hier komt later nog een model voor de crypto coin
