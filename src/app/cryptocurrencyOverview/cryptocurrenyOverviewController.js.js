@@ -17,66 +17,50 @@ function getListOfMostPopularCryptoCurrencies() {
     return listOfMostPopularCryptoTickerNames;
 }
 
-function createTableDataForCryptoCurrenciesTable() {
-    let rowsOfTableDataOfCryptoCurrenciesTable;
-
-    let rowOfTableDataOfCryptoCurrenciesTable = '<tr>';
-
-    tableDataOfCryptoCurrenciesTable += '</tr>';
-
-    rowsOfTableDataOfCryptoCurrenciesTable += tableDataOfCryptoCurrenciesTable;
-
-    return rowsOfTableDataOfCryptoCurrenciesTable;
-}
-
-async function createTableHeadingForCryptoCurrenciesTable() {
-    const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidPricesOfMostPopularCrypto();
-    let tableHeadingOfCryptoCurrenciesTable = '<tr>';
+function createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
+    let rowsOfTableDataForCryptoCurrenciesTable;
+    let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
 
     for(const popularCrypto of listOfMostPopularCryptoBidPrices) {
         let tableDataWithPopularCrypto = '<td>';
-        
-
+        tableDataWithPopularCrypto += popularCrypto.popularCryptoTickerName;
         tableDataWithPopularCrypto += '</td>';
+
+        tableRowWithTableDataForCryptoCurrenciesTable += tableDataWithPopularCrypto;
     }
 
-    tableHeadingOfCryptoCurrenciesTable += '</tr>';
+    tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
+    rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
 
-    return tableHeadingOfCryptoCurrenciesTable;
+    return rowsOfTableDataForCryptoCurrenciesTable;
+}
+
+async function createTableHeadingForCryptoCurrenciesTable() {
+    let tableHeadingRowForCryptoCurrenciesTable = '<tr>';
+    
+    // moet nog dynamisch worden
+    let tableHeading = '<th>';
+    tableHeading += 'ticker name';
+    tableHeading += '</th>';
+    tableHeadingRowForCryptoCurrenciesTable += tableHeading;
+    
+    tableHeadingRowForCryptoCurrenciesTable += '</tr>';
+
+    return tableHeadingRowForCryptoCurrenciesTable;
 }
 
 function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
-    let tableSectionDomElement = document.getElementsByTagName('section')[0];
-
     let tableWithCryptoCurrenciesToBeDisplayed = '<table>';
 
-    tableHeadingOfCryptoCurrenciesTable = createTableHeadingForCryptoCurrenciesTable();
+    const tableHeadingOfCryptoCurrenciesTable = createTableHeadingForCryptoCurrenciesTable();
     tableWithCryptoCurrenciesToBeDisplayed += tableHeadingOfCryptoCurrenciesTable;
 
-    rowsOfTableDataOfCryptoCurrenciesTable = createTableDataForCryptoCurrenciesTable();
+    const rowsOfTableDataOfCryptoCurrenciesTable = createTableDataForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices);
     tableWithCryptoCurrenciesToBeDisplayed += rowsOfTableDataOfCryptoCurrenciesTable;
 
     tableWithCryptoCurrenciesToBeDisplayed += '</table>';
 
-    tableSectionDomElement.insertAdjacentHTML('beforeend', tableWithCryptoCurrenciesToBeDisplayed);
-
-    // <table>
-    //     <tr>
-    //         <th>Firstname</th>
-    //         <th>Lastname</th>
-    //         <th>Age</th>
-    //     </tr>
-    //     <tr>
-    //         <td>Jill</td>
-    //         <td>Smith</td>
-    //         <td>50</td>
-    //     </tr>
-    //     <tr>
-    //         <td>Eve</td>
-    //         <td>Jackson</td>
-    //         <td>94</td>
-    //     </tr>
-    // </table>
+    return tableWithCryptoCurrenciesToBeDisplayed;
 }
 
 export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
@@ -97,9 +81,8 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
 
 export async function renderCryptoCurrenciesOverview() {
     const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidPricesOfMostPopularCrypto();
+    let tableSectionDomElement = document.getElementsByTagName('section')[0];
+    const tableWithCryptoCurrenciesToBeDisplayed = createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices);
 
-    // zet hier de table in de section 
-
-    // test
-    createTableHeadingForCryptoCurrenciesTable();
+    tableSectionDomElement.insertAdjacentHTML('beforeend', tableWithCryptoCurrenciesToBeDisplayed);
 }
