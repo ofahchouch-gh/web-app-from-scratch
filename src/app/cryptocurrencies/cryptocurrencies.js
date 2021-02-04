@@ -17,7 +17,17 @@ function getListOfMostPopularCryptoCurrencies() {
     return listOfMostPopularCryptoTickerNames;
 }
 
+function createTableDataForCryptoCurrenciesTable() {
+    let rowsOfTableDataOfCryptoCurrenciesTable;
 
+    let rowOfTableDataOfCryptoCurrenciesTable = '<tr>';
+
+    tableDataOfCryptoCurrenciesTable += '</tr>';
+
+    rowsOfTableDataOfCryptoCurrenciesTable += tableDataOfCryptoCurrenciesTable;
+
+    return rowsOfTableDataOfCryptoCurrenciesTable;
+}
 
 
 
