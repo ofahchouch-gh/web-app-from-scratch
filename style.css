@@ -14,7 +14,7 @@ body {
 }
 
 header {
-    width: 50%;
+    width: 70%;
     height: 5%;
     display: flex;
     justify-content: center;
@@ -25,7 +25,7 @@ header {
 }
 
 section {
-    width: 50%;
+    width: 70%;
     height: auto;
     margin-top: 1vh;
 }

@@ -104,7 +104,7 @@ function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
     return tableWithCryptoCurrenciesToBeDisplayed;
 }
 
-export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
+export async function fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto() {
     const listOfMostPopularCryptoTickerNames = getListOfMostPopularCryptoCurrencies();
     let listOfMostPopularCryptoBidPrices = [];
     
@@ -112,13 +112,13 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
         const fetchedBidAndAskPriceOfSpecificTicker = await fetchBidAndAskPriceOfSpecificTicker(popularCryptoTickerName);
         const highestBidPriceOfFetchedTicker = Number.parseFloat(getHighestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
         const lowestAskPriceOfFetchedTicker = Number.parseFloat(getLowestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
-        const potentialWinOrLossThatCouldBeMade = Number.parseFloat((highestBidPriceOfFetchedTicker - lowestAskPriceOfFetchedTicker)).toFixed(2);
+        const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((lowestAskPriceOfFetchedTicker - highestBidPriceOfFetchedTicker)).toFixed(2);
 
         listOfMostPopularCryptoBidPrices.push({ 
             'Popular crypto ticker name (USDT)': popularCryptoTickerName,
             'Current avg. highest bid price ($/USDT)': highestBidPriceOfFetchedTicker,
             'Current avg. lowest ask price ($/USDT': lowestAskPriceOfFetchedTicker,
-            'Current avg. win/loss that could be made ($/USDT)': potentialWinOrLossThatCouldBeMade
+            'Current avg. profit/loss with one whole coin ($/USDT)': potentialProfitOrLossThatCouldBeMade
         });
     }
 
@@ -126,7 +126,7 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
 }
 
 export async function renderCryptoCurrenciesOverview() {
-    const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidPricesOfMostPopularCrypto();
+    const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto();
     let tableSectionDomElement = document.getElementsByTagName('section')[0];
 
     const tableWithCryptoCurrenciesToBeDisplayed = createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices);
