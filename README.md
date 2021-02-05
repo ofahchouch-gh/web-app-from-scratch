@@ -6,15 +6,11 @@ This is my repo for the Web App From Scratch course.
 https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## Table of Contents 🗃
-* [To Do](#to-do-)
 * [Description](#description-)
+* [To Do](#to-do-)
+* [Done](#Done-)
 * [Installing](#installing-)
 * [API](#api-)
-
-## To Do
-- overview page of top 20 most traded crypto (8 february - 11 february)
-- detail page of selected crypto (8 february - 11 february)
-
 
 ## Description 📝
 During this course I created a web app from scratch, so without any frameworks, using HTML, CSS and Javascript. The goal is to make a web app from scratch where
@@ -37,6 +33,12 @@ Examples:
 - deposit
 - withdraw
 
+## To Do
+- finalize overview page of top 20 most traded crypto (8 february - 11 february, week 2 of minor)
+- detail page of selected crypto (8 february - 11 february, week 2 of minor)
+
+## Done
+- prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1 of minor)
 
 ## Installing 🔍
 To install this application enter the following into your terminal:
@@ -45,7 +47,6 @@ git clone https://github.com/ofahchouch-gh/ofahchouch-gh.web-app-from-scratch.gi
 
 cd ofahchouch-gh.web-app-from-scratch.github.io
 ```
-
 
 ## API 🐒
 I made use of the following API for this project:
