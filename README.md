@@ -14,6 +14,22 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 ## Description 📝
 During this course I created a web app from scratch, so without any frameworks, using HTML, CSS and Javascript. The data I use comes from the [Binance Spot Api](#api-).
 
+The [Binance Spot Api](#api-) is the API of the Binance exchange. Everything which can be done manually on their webapp related to spot trading can be done with the API as well.
+
+Examples:
+
+- fetchTicker
+- fetchCurrencies
+- fetchBalance
+- createOrder
+- cancelOrder
+- fetchOrder
+- fetchOrders
+- fetchOpenOrders
+- fetchClosedOrders
+- deposit
+- withdraw
+
 ## Installing 🔍
 To install this application enter the following into your terminal:
 ```
