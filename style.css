@@ -75,7 +75,7 @@ tbody tr td:hover {
     cursor: pointer;
 }
 
-#loader {
+aside {
     position: relative;
     top: 25vh;
     justify-self: center;

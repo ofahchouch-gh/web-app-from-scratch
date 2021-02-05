@@ -58,10 +58,10 @@ function createTableHeadingRowForCryptoCurrenciesTable(listOfMostPopularCryptoBi
     let tableHeadingRowForCryptoCurrenciesTable = '<tr>';
 
     for(const propertyOfPopularCrypto in listOfMostPopularCryptoBidPrices[0]) {
-        let tableHeading = '<th>';
-        tableHeading += propertyOfPopularCrypto;
-        tableHeading += '</th>';
-        tableHeadingRowForCryptoCurrenciesTable += tableHeading;
+        let tableHeadingOfPopularCryptoProperty = '<th>';
+        tableHeadingOfPopularCryptoProperty += propertyOfPopularCrypto;
+        tableHeadingOfPopularCryptoProperty += '</th>';
+        tableHeadingRowForCryptoCurrenciesTable += tableHeadingOfPopularCryptoProperty;
     }
     
     tableHeadingRowForCryptoCurrenciesTable += '</tr>';
@@ -80,7 +80,7 @@ function createTableHeadingForCryptoCurrenciesTable(listOfMostPopularCryptoBidPr
 }
 
 function clearTable() {
-    if(document.getElementById('loader').style.display !== 'none')  document.getElementById('loader').style.display = 'none';
+    if(document.getElementsByTagName('aside')[0].style.display !== 'none')  document.getElementsByTagName('aside')[0].style.display = 'none';
 
     let tableDomElement = document.getElementsByTagName('table')[0];
     
@@ -113,10 +113,10 @@ function styleProfitOrLossTableData() {
     for(let tableDataChildNode of profitOrLossTableRowElement.childNodes) {
         if (parseFloat(tableDataChildNode.innerText) > (0.00)) {
             tableDataChildNode.style.color = 'mediumseagreen';
-            tableDataChildNode.insertAdjacentHTML('afterbegin', "<span>&#8657; </span>");
+            tableDataChildNode.insertAdjacentHTML('afterbegin', "<span>&#10138; </span>");
         } else if (parseFloat(tableDataChildNode.innerText) < (0.00)) {
             tableDataChildNode.style.color = 'firebrick';
-            tableDataChildNode.insertAdjacentHTML('afterbegin', "<span>&#8659; </span>");
+            tableDataChildNode.insertAdjacentHTML('afterbegin', "<span>&#10136; </span>");
         }
     }
 }
