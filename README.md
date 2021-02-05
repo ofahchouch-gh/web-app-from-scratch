@@ -2,15 +2,15 @@
 
 This is my repo for the Web App From Scratch course.
 
+## Live
+https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
+
 ## Table of Contents 🗃
 * [Live] (#live-)
 * [To Do](#to-do-)
 * [Description](#description-)
 * [Installing](#installing-)
 * [API](#api-)
-
-## Live
-https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## Description 📝
 During this course I created a web app from scratch, so without any frameworks, using HTML, CSS and Javascript. The data I use comes from the [Binance Spot Api](#api-).
