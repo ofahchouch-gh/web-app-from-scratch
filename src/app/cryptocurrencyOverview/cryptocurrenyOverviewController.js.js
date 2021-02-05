@@ -80,6 +80,8 @@ function createTableHeadingForCryptoCurrenciesTable(listOfMostPopularCryptoBidPr
 }
 
 function clearTable() {
+    if(document.getElementById('loader').style.display !== 'none')  document.getElementById('loader').style.display = 'none';
+
     let tableDomElement = document.getElementsByTagName('table')[0];
     
     if(typeof tableDomElement !== 'undefined') {
