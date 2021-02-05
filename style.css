@@ -67,9 +67,8 @@ td {
     border-right: 1px solid black;
 }
 
+
 tbody tr td:hover {
-    background-color: grey;
-    color: white;
     cursor: pointer;
 }
 

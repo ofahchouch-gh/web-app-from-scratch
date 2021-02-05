@@ -29,7 +29,7 @@ function createTableDataForCryptoCurrenciesTable(listOfDataAboutCryptoObject) {
             let tableDataWithPopularCrypto = '<td>';
     
             let currentPropertyToString = Object.keys(popularCrypto)[currentPropertyToBeSetInTableDataCounter];
-            tableDataWithPopularCrypto +=  eval('popularCrypto.' + currentPropertyToString);
+            tableDataWithPopularCrypto +=  popularCrypto[currentPropertyToString]
 
             tableDataWithPopularCrypto += '</td>';
             listOfTableDataWithPopularCrypto += tableDataWithPopularCrypto;
@@ -70,6 +70,15 @@ function createTableHeadingRowForCryptoCurrenciesTable(listOfMostPopularCryptoBi
 }
 
 function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
+    let tableDomElement = document.getElementsByTagName('table')[0];
+    
+    if(typeof tableDomElement !== 'undefined') {
+        Array.prototype.slice.call(document.getElementsByTagName('table')).forEach(
+            function(item) {
+              item.remove();
+        });
+    }
+    
     let tableWithCryptoCurrenciesToBeDisplayed = '<table>';
 
     const tableHeadingOfCryptoCurrenciesTable = createTableHeadingForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices);
@@ -89,10 +98,11 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
     
     for(const popularCryptoTickerName of listOfMostPopularCryptoTickerNames) {
         const fetchedBidAndAskPriceOfSpecificTicker = await fetchBidAndAskPriceOfSpecificTicker(popularCryptoTickerName);
-        const highestBidPriceOfFetchedTicker = getHighestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker);
+        const highestBidPriceOfFetchedTicker = Number.parseFloat(getHighestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
 
-        listOfMostPopularCryptoBidPrices.push({ popularCryptoTickerName: popularCryptoTickerName,
-            highestBidPriceOfFetchedTicker: highestBidPriceOfFetchedTicker
+        listOfMostPopularCryptoBidPrices.push({ 
+            'Popular crypto ticker name (USDT)': popularCryptoTickerName,
+            'Current highest bid price ($)': highestBidPriceOfFetchedTicker
         });
     }
 
@@ -100,9 +110,12 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
 }
 
 export async function renderCryptoCurrenciesOverview() {
+    // check of je een gedetaileerde object kan callen
     const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidPricesOfMostPopularCrypto();
     let tableSectionDomElement = document.getElementsByTagName('section')[0];
+
     const tableWithCryptoCurrenciesToBeDisplayed = createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices);
 
     tableSectionDomElement.insertAdjacentHTML('beforeend', tableWithCryptoCurrenciesToBeDisplayed);
+
 }
