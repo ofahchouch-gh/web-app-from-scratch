@@ -21,9 +21,14 @@ header {
     border-bottom: 1px solid #DCDCDC;
 }
 
-section {
+main {
     width: 75%;
     height: auto;
+}
+
+section {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 1vh;

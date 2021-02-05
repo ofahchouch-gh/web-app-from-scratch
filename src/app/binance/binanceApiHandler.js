@@ -1,39 +1,29 @@
 const BINANCE_API_URL_PREFIX = 'https://api.binance.com/api/v1';
 
 export async function fetchAllTickers() {
-    let url = `${BINANCE_API_URL_PREFIX}/exchangeInfo`;
-    let fetchedTickers = [];
+    try {
+        const url = `${BINANCE_API_URL_PREFIX}/exchangeInfo`;
 
-    await fetch(`${url}`, {
-        method: 'GET'
-    }).then(fetchedData => {
-        return fetchedData.json();
-    }).then(fetchedData => {
-        fetchedTickers = fetchedData;
-    }).catch(error => {
-        // later afhandelen met een exception message
-        console.log('failed to fetch data: ', error);
-    });
-    
-    return fetchedTickers;
+        const fetchAllTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
+        const fetchedTickers = await fetchAllTickerApiResponse.json();
+
+        return fetchedTickers;
+    } catch(error) {
+        console.log('failed to fetch tickers: ', error);
+    }
 }
 
 export async function fetchBidAndAskPriceOfSpecificTicker(tickerName) {
-    let url = `${BINANCE_API_URL_PREFIX}/depth?symbol=${tickerName}&limit=5`;
-    let fetchedTicker = null;
+    try {
+        const url = `${BINANCE_API_URL_PREFIX}/depth?symbol=${tickerName}&limit=5`;
 
-    await fetch(`${url}`, {
-        method: 'GET'
-    }).then(fetchedData => {
-        return fetchedData.json();
-    }).then(fetchedData => {
-        fetchedTicker = fetchedData;
-    }).catch(error => {
-        // later afhandelen met een exception message
-        console.log('failed to fetch data: ', error);
-    });
-    
-    return fetchedTicker;
+        const fetchSpecificTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
+        const fetchedTicker = await fetchSpecificTickerApiResponse.json();
+
+        return fetchedTicker;
+    } catch(error) {
+        console.log('failed to fetch ticker: ', error);
+    }
 }
 
 export function getHighestBidPriceOfFetchedTicker(ticker) {
