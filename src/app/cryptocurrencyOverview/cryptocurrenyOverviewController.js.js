@@ -135,7 +135,7 @@ export async function fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMost
             'Popular crypto ticker name (USDT)': popularCryptoTickerName,
             'Current avg. highest bid price ($/USDT)': highestBidPriceOfFetchedTicker,
             'Current avg. lowest ask price ($/USDT': lowestAskPriceOfFetchedTicker,
-            'Current avg. profit/loss with one whole coin ($/USDT)': potentialProfitOrLossThatCouldBeMade
+            'Current avg. profit/loss with 1 coin ($/USDT)': potentialProfitOrLossThatCouldBeMade
         });
     }
 
