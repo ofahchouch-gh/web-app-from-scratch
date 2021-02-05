@@ -36,11 +36,11 @@ Examples:
 
 More info about the endpoints i am using [API](#api-).
 
-## To Do
+## To Do :construction:
 - finalize overview page of top 20 most traded crypto (8 february - 11 february, week 2 of minor)
 - detail page of selected crypto (8 february - 11 february, week 2 of minor)
 
-## Done
+## Done :construction_worker:
 - prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1 of minor)
 
 ## Installing 🔍
@@ -54,7 +54,10 @@ cd ofahchouch-gh.web-app-from-scratch.github.io
 ## API 🐒
 I made use of the following API functionality for this project:
 
+
 **General API Information**
+
+
 The base endpoint is https://api.binance.com
 
 All endpoints return either a JSON object or array.
@@ -63,6 +66,8 @@ All time and timestamp related fields are in milliseconds.
 
 
 **HTTP Return Codes**
+
+
 HTTP 4XX return codes are used for malformed requests; the issue is on the sender's side.
 HTTP 403 return code is used when the WAF Limit (Web Application Firewall) has been violated.
 HTTP 429 return code is used when breaking a request rate limit.
@@ -72,6 +77,8 @@ With using /wapi/v3 , HTTP 504 return code is used when the API successfully sen
 
 
 **General Information on Endpoints**
+
+
 For GET endpoints, parameters must be sent as a query string.
 For POST, PUT, and DELETE endpoints, the parameters may be sent as a query string or in the request body with content type application/x-www-form-urlencoded. You may mix parameters between both the query string and request body if you wish to do so.
 Parameters may be sent in any order.
@@ -79,6 +86,8 @@ If a parameter sent in both the query string and request body, the query string 
 
 
 **IP Limits**
+
+
 Every request will contain X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter) in the response headers which has the current used weight for the IP for all request rate limiters defined.
 Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
 When a 429 is received, it's your obligation as an API to back off and not spam the API.
@@ -88,3 +97,4 @@ A Retry-After header is sent with a 418 or 429 responses and will give the numbe
 The limits on the API are based on the IPs, not the API keys.
 
 ## Overview Page
+
