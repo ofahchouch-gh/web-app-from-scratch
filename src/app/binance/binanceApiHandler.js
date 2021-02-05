@@ -37,7 +37,7 @@ export async function fetchBidAndAskPriceOfSpecificTicker(tickerName) {
 }
 
 export function getHighestBidPriceOfFetchedTicker(ticker) {
-    let highestBidPriceOfFetchedTicker = 0;
+    let highestBidPriceOfFetchedTicker = ticker.bids[0];
 
     ticker.bids.find(fetchedBidPriceOfTicker => {
         const bidPriceOfFetchedTicker = fetchedBidPriceOfTicker[0];
@@ -48,4 +48,18 @@ export function getHighestBidPriceOfFetchedTicker(ticker) {
     });
 
     return highestBidPriceOfFetchedTicker;
+}
+
+export function getLowestAskPriceOfFetchedTicker(ticker) {
+    let lowestAskPriceOfFetchedTicker = ticker.asks[0];
+
+    ticker.asks.find(fetchedAskPriceOfTicker => {
+        const askPriceOfFetchedTicker = fetchedAskPriceOfTicker[0];
+
+        if(askPriceOfFetchedTicker < lowestAskPriceOfFetchedTicker) {
+            lowestAskPriceOfFetchedTicker = askPriceOfFetchedTicker;
+        }
+    });
+
+    return lowestAskPriceOfFetchedTicker;
 }

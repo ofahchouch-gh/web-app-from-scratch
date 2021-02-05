@@ -1,4 +1,4 @@
-import { fetchBidAndAskPriceOfSpecificTicker, getHighestBidPriceOfFetchedTicker } from '../binance/binanceApiHandler.js';
+import { fetchBidAndAskPriceOfSpecificTicker, getHighestBidPriceOfFetchedTicker, getLowestAskPriceOfFetchedTicker } from '../binance/binanceApiHandler.js';
 
 function getListOfMostPopularCryptoCurrencies() {
     const listOfMostPopularCryptoTickerNames = [
@@ -6,24 +6,34 @@ function getListOfMostPopularCryptoCurrencies() {
         'ETHUSDT',
         'XRPUSDT',
         'XLMUSDT',
+        'LTCUSDT',
+        'DOGEUSDT',
         'ADAUSDT',
         'DOTUSDT',
         'NEOUSDT',
         'LINKUSDT',
         'XMRUSDT',
-        'BNBUSDT'
+        'BNBUSDT',
+        'EOSUSDT',
+        'VETUSDT',
+        'BCHUSDT',
+        'ZECUSDT',
+        'DASHUSDT',
+        'TRXUSDT',
+        'XEMUSDT',
+        'VETUSDT'
     ];
 
     return listOfMostPopularCryptoTickerNames;
 }
 
 function createTableDataForCryptoCurrenciesTable(listOfDataAboutCryptoObject) {
-    let rowsOfTableDataForCryptoCurrenciesTable;
+    let rowsOfTableDataForCryptoCurrenciesTable = '';
     let currentPropertyToBeSetInTableDataCounter = 0;
     
     for(const propertyOfPopularCrypto in listOfDataAboutCryptoObject[0]) {
         let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
-        let listOfTableDataWithPopularCrypto;
+        let listOfTableDataWithPopularCrypto = '';
     
         for(const popularCrypto of listOfDataAboutCryptoObject) {
             let tableDataWithPopularCrypto = '<td>';
@@ -44,16 +54,6 @@ function createTableDataForCryptoCurrenciesTable(listOfDataAboutCryptoObject) {
     return rowsOfTableDataForCryptoCurrenciesTable;
 }
 
-function createTableHeadingForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
-    let tableHeadingForCryptoCurrenciesTable = '<thead>';
-
-    tableHeadingForCryptoCurrenciesTable += createTableHeadingRowForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices);
-
-    tableHeadingForCryptoCurrenciesTable += '</thead>';
-
-    return tableHeadingForCryptoCurrenciesTable;
-}
-
 function createTableHeadingRowForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
     let tableHeadingRowForCryptoCurrenciesTable = '<tr>';
 
@@ -69,7 +69,17 @@ function createTableHeadingRowForCryptoCurrenciesTable(listOfMostPopularCryptoBi
     return tableHeadingRowForCryptoCurrenciesTable;
 }
 
-function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
+function createTableHeadingForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices) {
+    let tableHeadingForCryptoCurrenciesTable = '<thead>';
+
+    tableHeadingForCryptoCurrenciesTable += createTableHeadingRowForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices);
+
+    tableHeadingForCryptoCurrenciesTable += '</thead>';
+
+    return tableHeadingForCryptoCurrenciesTable;
+}
+
+function clearTable() {
     let tableDomElement = document.getElementsByTagName('table')[0];
     
     if(typeof tableDomElement !== 'undefined') {
@@ -78,7 +88,9 @@ function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
               item.remove();
         });
     }
-    
+}
+function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
+    clearTable();
     let tableWithCryptoCurrenciesToBeDisplayed = '<table>';
 
     const tableHeadingOfCryptoCurrenciesTable = createTableHeadingForCryptoCurrenciesTable(listOfMostPopularCryptoBidPrices);
@@ -99,10 +111,14 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
     for(const popularCryptoTickerName of listOfMostPopularCryptoTickerNames) {
         const fetchedBidAndAskPriceOfSpecificTicker = await fetchBidAndAskPriceOfSpecificTicker(popularCryptoTickerName);
         const highestBidPriceOfFetchedTicker = Number.parseFloat(getHighestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
+        const lowestAskPriceOfFetchedTicker = Number.parseFloat(getLowestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
+        const potentialWinOrLossThatCouldBeMade = Number.parseFloat((highestBidPriceOfFetchedTicker - lowestAskPriceOfFetchedTicker)).toFixed(2);
 
         listOfMostPopularCryptoBidPrices.push({ 
             'Popular crypto ticker name (USDT)': popularCryptoTickerName,
-            'Current highest bid price ($)': highestBidPriceOfFetchedTicker
+            'Current avg. highest bid price ($/USDT)': highestBidPriceOfFetchedTicker,
+            'Current avg. lowest ask price ($/USDT': lowestAskPriceOfFetchedTicker,
+            'Current avg. win/loss that could be made ($/USDT)': potentialWinOrLossThatCouldBeMade
         });
     }
 
@@ -110,7 +126,6 @@ export async function fetchAllHighestBidPricesOfMostPopularCrypto() {
 }
 
 export async function renderCryptoCurrenciesOverview() {
-    // check of je een gedetaileerde object kan callen
     const listOfMostPopularCryptoBidPrices = await fetchAllHighestBidPricesOfMostPopularCrypto();
     let tableSectionDomElement = document.getElementsByTagName('section')[0];
 

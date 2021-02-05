@@ -7,7 +7,7 @@ function sleep(ms) {
 async function app() {
     while(true) {
         await renderCryptoCurrenciesOverview();
-        await sleep(5000);
+        await sleep(50);
     }
 }
 
