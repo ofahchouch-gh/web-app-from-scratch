@@ -11,6 +11,11 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 * [Installing](#installing-)
 * [API](#api-)
 
+## To Do
+- overview page of top 20 most traded crypto (8 february - 11 february)
+- detail page of selected crypto (8 february - 11 february)
+
+
 ## Description 📝
 During this course I created a web app from scratch, so without any frameworks, using HTML, CSS and Javascript. The goal is to make a web app from scratch where
 i can find an overview of the top 20 cryptocurrencies. The cryptocurrencies will have a detail page where more information about the specific coin is given. 
@@ -32,6 +37,7 @@ Examples:
 - deposit
 - withdraw
 
+
 ## Installing 🔍
 To install this application enter the following into your terminal:
 ```
@@ -39,6 +45,7 @@ git clone https://github.com/ofahchouch-gh/ofahchouch-gh.web-app-from-scratch.gi
 
 cd ofahchouch-gh.web-app-from-scratch.github.io
 ```
+
 
 ## API 🐒
 I made use of the following API for this project:
