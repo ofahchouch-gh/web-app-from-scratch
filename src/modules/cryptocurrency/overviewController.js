@@ -1,4 +1,4 @@
-import { fetchBidAndAskPriceOfSpecificTicker, getHighestBidPriceOfFetchedTicker, getLowestAskPriceOfFetchedTicker } from '../binance/binanceApiHandler.js';
+import { fetchBidAndAskPriceOfSpecificTicker, getHighestBidPriceOfFetchedTicker, getLowestAskPriceOfFetchedTicker } from '../binance/apiHandler.js';
 
 const listOfMostPopularCryptoTickerNames = [
     'BTCUSDT',

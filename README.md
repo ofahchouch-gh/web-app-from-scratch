@@ -2,7 +2,7 @@
 
 This is my repo for the Web App From Scratch course.
 
-## Live
+## Live :globe_with_meridians:
 https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## Table of Contents 🗃
@@ -11,6 +11,7 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 * [Done](#Done-)
 * [Installing](#installing-)
 * [API](#api-)
+    * [Overview Page](#overview-page)
 
 ## Description 📝
 During this course I created a web app from scratch, so without any frameworks, using HTML, CSS and Javascript. The goal is to make a web app from scratch where
@@ -85,3 +86,5 @@ Repeatedly violating rate limits and/or failing to back off after receiving 429s
 IP bans are tracked and scale in duration for repeat offenders, from 2 minutes to 3 days.
 A Retry-After header is sent with a 418 or 429 responses and will give the number of seconds required to wait, in the case of a 429, to prevent a ban, or, in the case of a 418, until the ban is over.
 The limits on the API are based on the IPs, not the API keys.
+
+## Overview Page
