@@ -89,6 +89,7 @@ function clearTable() {
         });
     }
 }
+
 function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
     clearTable();
     let tableWithCryptoCurrenciesToBeDisplayed = '<table>';
@@ -102,6 +103,20 @@ function createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices) {
     tableWithCryptoCurrenciesToBeDisplayed += '</table>';
 
     return tableWithCryptoCurrenciesToBeDisplayed;
+}
+
+function styleProfitOrLossTableData() {
+    const profitOrLossTableRowElement = document.getElementsByTagName('tr')[4];
+    
+    for(let tableDataChildNode of profitOrLossTableRowElement.childNodes) {
+        if (parseFloat(tableDataChildNode.innerText) > (0.00)) {
+            tableDataChildNode.style.color = 'mediumseagreen';
+            tableDataChildNode.insertAdjacentHTML('afterbegin', "<span>&#8657; </span>");
+        } else if (parseFloat(tableDataChildNode.innerText) < (0.00)) {
+            tableDataChildNode.style.color = 'firebrick';
+            tableDataChildNode.insertAdjacentHTML('afterbegin', "<span>&#8659; </span>");
+        }
+    }
 }
 
 export async function fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto() {
@@ -132,5 +147,5 @@ export async function renderCryptoCurrenciesOverview() {
     const tableWithCryptoCurrenciesToBeDisplayed = createTableWithCryptoCurrencies(listOfMostPopularCryptoBidPrices);
 
     tableSectionDomElement.insertAdjacentHTML('beforeend', tableWithCryptoCurrenciesToBeDisplayed);
-
+    styleProfitOrLossTableData();
 }
