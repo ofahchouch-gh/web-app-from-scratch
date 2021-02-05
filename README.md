@@ -3,6 +3,7 @@
 This is my repo for the Web App From Scratch course.
 
 ## Table of Contents 🗃
+* [Live] (#live)
 * [To Do](#to-do-)
 * [Description](#description-)
 * [Installing](#installing-)
@@ -12,6 +13,9 @@ This is my repo for the Web App From Scratch course.
   * [Actor Diagram](#actor-diagram)
   * [Interaction Diagram](#interaction-diagram)
 * [Sources](#sources-)
+
+## Live
+https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## To Do 📌
 This is a list of things I want to do in this course:
