@@ -6,7 +6,6 @@ This is my repo for the Web App From Scratch course.
 https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## Table of Contents 🗃
-* [Live] (#live-)
 * [To Do](#to-do-)
 * [Description](#description-)
 * [Installing](#installing-)
