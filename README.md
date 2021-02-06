@@ -8,7 +8,7 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 ## Table of Contents 🗃
 * [Description](#description-)
 * [To Do](#to-do-)
-* [Done](#Done-)
+* [Done](#done-)
 * [Installing](#installing-)
 * [API](#api-)
     * [Overview Page](#overview-page)

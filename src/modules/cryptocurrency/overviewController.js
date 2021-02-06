@@ -1,4 +1,4 @@
-import { fetchBidAndAskPriceOfSpecificTicker, getHighestBidPriceOfFetchedTicker, getLowestAskPriceOfFetchedTicker } from '../binance/apiHandler.js';
+import { fetchBidAndAskPriceOfSpecificTicker, getLowestBidPriceOfFetchedTicker, getHighestAskPriceOfFetchedTicker } from '../binance/apiHandler.js';
 
 const listOfMostPopularCryptoTickerNames = [
     'BTCUSDT',
@@ -122,14 +122,14 @@ export async function fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMost
     
     for(const popularCryptoTickerName of listOfMostPopularCryptoTickerNames) {
         const fetchedBidAndAskPriceOfSpecificTicker = await fetchBidAndAskPriceOfSpecificTicker(popularCryptoTickerName);
-        const highestBidPriceOfFetchedTicker = Number.parseFloat(getHighestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
-        const lowestAskPriceOfFetchedTicker = Number.parseFloat(getLowestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
-        const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((lowestAskPriceOfFetchedTicker - highestBidPriceOfFetchedTicker)).toFixed(2);
+        const lowestBidPriceOfFetchedTicker = Number.parseFloat(getLowestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
+        const highestAskPriceOfFetchedTicker = Number.parseFloat(getHighestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
+        const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((highestAskPriceOfFetchedTicker - lowestBidPriceOfFetchedTicker)).toFixed(2);
 
         listOfMostPopularCryptoBidPrices.push({ 
             'Popular crypto ticker name (USDT)': popularCryptoTickerName,
-            'Current avg. highest bid price ($/USDT)': highestBidPriceOfFetchedTicker,
-            'Current avg. lowest ask price ($/USDT': lowestAskPriceOfFetchedTicker,
+            'Current avg. lowest bid price ($/USDT)': lowestBidPriceOfFetchedTicker,
+            'Current avg. highest ask price ($/USDT)': highestAskPriceOfFetchedTicker,
             'Current avg. profit/loss with 1 coin ($/USDT)': potentialProfitOrLossThatCouldBeMade
         });
     }

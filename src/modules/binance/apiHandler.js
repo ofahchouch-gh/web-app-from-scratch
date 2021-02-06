@@ -4,8 +4,8 @@ export async function fetchAllTickers() {
     try {
         const url = `${BINANCE_API_URL_PREFIX}/exchangeInfo`;
 
-        const fetchAllTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
-        const fetchedTickers = await fetchAllTickerApiResponse.json();
+        const fetchAllTickersApiResponse = await fetch(`${url}`, { method: 'GET' });
+        const fetchedTickers = await fetchAllTickersApiResponse.json();
 
         return fetchedTickers;
     } catch(error) {
@@ -26,30 +26,30 @@ export async function fetchBidAndAskPriceOfSpecificTicker(tickerName) {
     }
 }
 
-export function getHighestBidPriceOfFetchedTicker(ticker) {
-    let highestBidPriceOfFetchedTicker = ticker.bids[0];
+export function getLowestBidPriceOfFetchedTicker(ticker) {
+    let lowestBidPriceOfFetchedTicker = ticker.bids[0];
 
     ticker.bids.find(fetchedBidPriceOfTicker => {
         const bidPriceOfFetchedTicker = fetchedBidPriceOfTicker[0];
 
-        if(bidPriceOfFetchedTicker > highestBidPriceOfFetchedTicker) {
-            highestBidPriceOfFetchedTicker = bidPriceOfFetchedTicker;
+        if(bidPriceOfFetchedTicker < lowestBidPriceOfFetchedTicker) {
+            lowestBidPriceOfFetchedTicker = bidPriceOfFetchedTicker;
         }
     });
 
-    return highestBidPriceOfFetchedTicker;
+    return lowestBidPriceOfFetchedTicker;
 }
 
-export function getLowestAskPriceOfFetchedTicker(ticker) {
-    let lowestAskPriceOfFetchedTicker = ticker.asks[0];
+export function getHighestAskPriceOfFetchedTicker(ticker) {
+    let highestAskPriceOfFetchedTicker = ticker.asks[0];
 
     ticker.asks.find(fetchedAskPriceOfTicker => {
         const askPriceOfFetchedTicker = fetchedAskPriceOfTicker[0];
 
-        if(askPriceOfFetchedTicker < lowestAskPriceOfFetchedTicker) {
-            lowestAskPriceOfFetchedTicker = askPriceOfFetchedTicker;
+        if(askPriceOfFetchedTicker > highestAskPriceOfFetchedTicker) {
+            highestAskPriceOfFetchedTicker = askPriceOfFetchedTicker;
         }
     });
 
-    return lowestAskPriceOfFetchedTicker;
+    return highestAskPriceOfFetchedTicker;
 }
