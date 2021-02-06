@@ -10,6 +10,7 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 * [To Do](#to-do-)
 * [Done](#done-)
 * [Installing](#installing-)
+* [Extra Work Done (Minor Related)](#extra-work-done-(Minor-Related)-)
 * [API](#api-)
     * [Overview Page](#overview-page)
 
@@ -50,6 +51,9 @@ git clone https://github.com/ofahchouch-gh/ofahchouch-gh.web-app-from-scratch.gi
 
 cd ofahchouch-gh.web-app-from-scratch.github.io
 ```
+
+## Extra Work Done (Minor Related) :boom:
+- created a router (instead of using a micro library)
 
 ## API 🐒
 I made use of the following API functionality for this project:
