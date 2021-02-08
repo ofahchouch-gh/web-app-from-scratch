@@ -7,10 +7,10 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## Table of Contents 🗃
 * [Description](#description-)
+* [Actors & Interaction](#actors-&-interaction-)
 * [To Do](#to-do-)
 * [Done](#done-)
 * [Installing](#installing-)
-* [Extra Work Done (Minor Related)](#extra-work-done-(Minor-Related)-)
 * [API](#api-)
     * [Overview Page](#overview-page)
 
@@ -37,8 +37,7 @@ Examples:
 
 More info about the endpoints i am using can be found here: [API](#api-).
 
-## Actors & Interaction
-
+## Actors & Interaction :pencil2:
 <p align="center">
   <img src="others/docs/imgs/actors.png" />
 </p>
@@ -53,9 +52,6 @@ More info about the endpoints i am using can be found here: [API](#api-).
 
 ## Done :construction_worker:
 - prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1 of minor)
-
-## Extra Work Done (Minor Related) :boom:
-- created a router (instead of using a micro library)
 
 ## Installing 🔍
 To install this application enter the following into your terminal:
