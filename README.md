@@ -7,7 +7,7 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 ## Table of Contents 🗃
 * [Description](#description-)
-* [Actors & Interaction](#actors-&-interaction-)
+* [Actors & Interaction](#actors--interaction-pencil2)
 * [To Do](#to-do-)
 * [Done](#done-)
 * [Installing](#installing-)
