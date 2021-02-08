@@ -8,8 +8,8 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 ## Table of Contents 🗃
 * [Description](#description-)
 * [Actors & Interaction](#actors--interaction-pencil2)
-* [To Do](#to-do-)
-* [Done](#done-)
+* [To Do](#to-do-construction)
+* [Done](#done-construction_worker)
 * [Installing](#installing-)
 * [API](#api-)
     * [Overview Page](#overview-page)
@@ -59,6 +59,8 @@ To install this application enter the following into your terminal:
 git clone https://github.com/ofahchouch-gh/ofahchouch-gh.web-app-from-scratch.github.io.git
 
 cd ofahchouch-gh.web-app-from-scratch.github.io
+
+(now serve the site: https://www.npmjs.com/package/live-server)
 ```
 
 ## API 🐒
