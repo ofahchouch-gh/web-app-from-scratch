@@ -1,1 +1,0 @@
-// hier komt later nog een mapper voor de crypto coin
