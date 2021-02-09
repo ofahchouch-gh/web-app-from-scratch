@@ -92,5 +92,20 @@ export default class CurrencyOverviewController {
         return tableHeadingForCryptoCurrenciesTable;
     }
 
+    putTable(listOfMostPopularCryptoBidPrices) {
+        this.clearTable();
+        let tableWithCryptoCurrenciesToBeDisplayed = '<table>';
+
+        const tableHeadingOfCryptoCurrenciesTable = this.putTableHeading(listOfMostPopularCryptoBidPrices);
+        tableWithCryptoCurrenciesToBeDisplayed += tableHeadingOfCryptoCurrenciesTable;
+        
+        const rowsOfTableDataOfCryptoCurrenciesTable = this.putTableRowData(listOfMostPopularCryptoBidPrices);
+        tableWithCryptoCurrenciesToBeDisplayed += rowsOfTableDataOfCryptoCurrenciesTable;
+    
+        tableWithCryptoCurrenciesToBeDisplayed += '</table>';
+
+        return tableWithCryptoCurrenciesToBeDisplayed
+    }
+
    
 }
