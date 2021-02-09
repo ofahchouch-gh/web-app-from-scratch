@@ -7,7 +7,7 @@ export default class CoinDetailView {
     router;
 
     constructor() {
-        this.router = new Router(this);
+        this.router = new Router();
     }
     
     renderDetailView(coinToBeDisplayed) {
@@ -17,14 +17,30 @@ export default class CoinDetailView {
 
     createDetailPanel() {
         let detailSectionDomElement = document.getElementsByTagName('section')[1];
-        detailSectionDomElement.insertAdjacentHTML('beforeend', `<div class="grid-container"></grid-container>`);
+        detailSectionDomElement.insertAdjacentHTML('beforeend', `<div class="flex-container"></grid-container>`);
 
         const gridContainerElements = ['header', 'main', 'footer']
         
         let elementCounter = 1;
         for (const element of gridContainerElements) {
-            let gridContainerDomElement = document.getElementsByClassName('grid-container')[0];
-            gridContainerDomElement.insertAdjacentHTML('beforeend', `<div class="item${elementCounter}" style="width: 100%; height: 50%; grid-area: ${element};">${element}</div>`);
+            let flexContainerDomElement = document.getElementsByClassName('flex-container')[0];
+            let heightOfFlexContainerChild = '';
+
+            switch(element) {
+                case 'header':
+                    heightOfFlexContainerChild = "20";
+                  break;
+                case 'main':
+                    heightOfFlexContainerChild = "70";
+                  break;
+                case 'footer':
+                    heightOfFlexContainerChild = "10";
+                    break;
+                default:
+              }
+
+              flexContainerDomElement.insertAdjacentHTML('beforeend', `<div class="item${elementCounter}" style=":${heightOfFlexContainerChild}%; width: 100%;"></div>`);
+
             elementCounter++;
         }
 
@@ -33,6 +49,13 @@ export default class CoinDetailView {
 
     createHeaderInDetailPanel(gridContainerElements) {
         const headerGridItemDomElement = document.getElementsByClassName('item1')[0];
-        headerGridItemDomElement.insertAdjacentHTML('afterbegin', `<h2>${this.coinToBeDisplayed}</h2>`);
+        headerGridItemDomElement.insertAdjacentHTML('afterbegin', `<h2>back</h2><h2 id="testt" style="text-align: center;">${this.coinToBeDisplayed}</h2>`);
+
+        document.getElementById('testt').addEventListener('click', function (mouseEvent) {
+            // const currencyOverview = new CurrencyOverview();
+            const innerText = mouseEvent.srcElement.innerText;
+            console.log(innerText)
+            // currencyOverview.routeToCoinDetailView(tickerNameToBeRoutedTo);
+        });  
     }
 }

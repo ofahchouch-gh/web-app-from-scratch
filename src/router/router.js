@@ -11,16 +11,15 @@ routie('coin/:nameOfCoinToBeDisplayed', (nameOfCoinToBeDisplayed) => {
 });
 
 export default class Router {
-    constructor(ViewToRouteTo) {
-        console.log('ViewToRouteTo', ViewToRouteTo)
-    }
-    
+    constructor() {}
+
     route(viewToRouteTo, params) {
         if (params === null) {
             routie(viewToRouteTo); 
         } else {
             const coinDetailView = new CoinDetailView();
             coinDetailView.renderDetailView(params);
+            
             routie(`${viewToRouteTo}/${params}`);
         }
     }
