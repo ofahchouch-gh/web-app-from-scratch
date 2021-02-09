@@ -17,6 +17,8 @@ export default class CurrencyOverview {
         while(true) await this.currencyOverviewController.putOverview();
     }
 
-    routeToCoinDetailView(coinToBeDisplayed) {}
+    routeToCoinDetailView(coinToBeDisplayed) {
+        console.log(coinToBeDisplayed);
+    }
 }
 

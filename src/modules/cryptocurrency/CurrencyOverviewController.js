@@ -1,4 +1,5 @@
 import BinanceApiHandler from '../binance/BinanceApiHandler.js';
+import CurrencyOverview from './CurrencyOverview.js';
 
 export default class CurrencyOverviewController {
     currencyOverviewModel;
@@ -115,6 +116,17 @@ export default class CurrencyOverviewController {
     
         tableSectionDomElement.insertAdjacentHTML('beforeend', tableWithCryptoCurrenciesToBeDisplayed);
         this.styleProfitOrLossTableData();
+        this.addRoutingEventListenersToTableData();
+    }
+
+    addRoutingEventListenersToTableData() {
+        for (let indexOfTickerNameInTableData = 0; indexOfTickerNameInTableData < (this.listOfMostPopularCryptoTickerNames.length); indexOfTickerNameInTableData++) {
+            document.getElementsByTagName("td")[indexOfTickerNameInTableData].addEventListener('click', function (mouseEvent) {
+                const currencyOverview = new CurrencyOverview();
+                tickerNameToBeRoutedTo = mouseEvent.srcElement.innerText;
+                currencyOverview.routeToCoinDetailView(tickerNameToBeRoutedTo);
+            });  
+        }
     }
 
     filterTable() {}
