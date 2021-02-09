@@ -1,9 +1,9 @@
-import { route } from './router/router.js';
-import { renderCryptoCurrenciesOverview } from './modules/cryptocurrency/CurrencyOverviewController.js';
+// import { renderCryptoCurrenciesOverview } from './modules/cryptocurrency/CurrencyOverviewController.js';
+import CurrencyOverview from './modules/cryptocurrency/CurrencyOverview.js';
 
-async function app() {
-    route('coin', 'bob');
-    while(true) await renderCryptoCurrenciesOverview();
-}
+(async function app() {
+    // currencyOverview.router.route('overview', null);
 
-app();
+    const currencyOverview = new CurrencyOverview();
+    currencyOverview.renderOverview();    
+})();

@@ -1,29 +1,19 @@
-routie('overview', function() {
+routie('overview', () => {
+    console.log('overview..');
     // render currency overview
 });
 
-routie('coin/:name', function(name) {
+routie('coin/:nameOfCoinToBeDisplayed', (nameOfCoinToBeDisplayed) => {
+    console.log(nameOfCoinToBeDisplayed);
     // render coin detail view
 });
 
-routie('*', function() {
-    // render main with currency overview
-});
-
-// export class Router {
-//     route(viewToRouteTo, params) {
-//         if (params === null) {
-//             routie(viewToRouteTo); 
-//         } else {
-//             routie(`${viewToRouteTo}/${params}`);
-//         }
-//     }
-// }
-
-export function route(viewToRouteTo, params) {
-    if (params === null) {
-        routie(viewToRouteTo); 
-    } else {
-        routie(`${viewToRouteTo}/${params}`);
+export default class Router {
+    route(viewToRouteTo, params) {
+        if (params === null) {
+            routie(viewToRouteTo); 
+        } else {
+            routie(`${viewToRouteTo}/${params}`);
+        }
     }
 }

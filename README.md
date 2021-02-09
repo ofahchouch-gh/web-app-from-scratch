@@ -38,6 +38,8 @@ Examples:
 More info about the endpoints i am using can be found here: [API](#api-).
 
 ## Actors & Interaction :pencil2:
+<!-- 
+Nog aan te passen in klassen diagram, opnieuw een check doen.. -->
 <p align="center">
   <img src="others/docs/imgs/actors.png" />
 </p>
