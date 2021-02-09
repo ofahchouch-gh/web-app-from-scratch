@@ -74,5 +74,23 @@ export default class CurrencyOverviewController {
         return rowsOfTableDataForCryptoCurrenciesTable;
     }
 
+    putTableHeading(listOfMostPopularCryptoBidPrices) {
+        let tableHeadingForCryptoCurrenciesTable = '<thead>';
+        let tableHeadingRowForCryptoCurrenciesTable = '<tr>';
 
+        for(const propertyOfPopularCrypto in listOfMostPopularCryptoBidPrices[0]) {
+            let tableHeadingOfPopularCryptoProperty = '<th>';
+            tableHeadingOfPopularCryptoProperty += propertyOfPopularCrypto;
+            tableHeadingOfPopularCryptoProperty += '</th>';
+            tableHeadingRowForCryptoCurrenciesTable += tableHeadingOfPopularCryptoProperty;
+        }
+        
+        tableHeadingRowForCryptoCurrenciesTable += '</tr>';
+        tableHeadingForCryptoCurrenciesTable += tableHeadingRowForCryptoCurrenciesTable;
+        tableHeadingForCryptoCurrenciesTable += '</thead>';
+
+        return tableHeadingForCryptoCurrenciesTable;
+    }
+
+   
 }
