@@ -46,5 +46,33 @@ export default class CurrencyOverviewController {
         }
     }
 
-    
+    putTableRowData(listOfDataAboutCryptoObject) {
+        let rowsOfTableDataForCryptoCurrenciesTable = '';
+        let currentPropertyToBeSetInTableDataCounter = 0;
+        
+        for(const propertyOfPopularCrypto in listOfDataAboutCryptoObject[0]) {
+            let tableRowWithTableDataForCryptoCurrenciesTable = '<tr>';
+            let listOfTableDataWithPopularCrypto = '';
+        
+            for(const popularCrypto of listOfDataAboutCryptoObject) {
+                let tableDataWithPopularCrypto = '<td>';
+        
+                let currentPropertyToString = Object.keys(popularCrypto)[currentPropertyToBeSetInTableDataCounter];
+                tableDataWithPopularCrypto +=  popularCrypto[currentPropertyToString]
+
+                tableDataWithPopularCrypto += '</td>';
+                listOfTableDataWithPopularCrypto += tableDataWithPopularCrypto;
+            }
+
+            currentPropertyToBeSetInTableDataCounter++;
+
+            tableRowWithTableDataForCryptoCurrenciesTable += listOfTableDataWithPopularCrypto;
+            tableRowWithTableDataForCryptoCurrenciesTable += '</tr>';
+            rowsOfTableDataForCryptoCurrenciesTable += tableRowWithTableDataForCryptoCurrenciesTable;
+        }
+
+        return rowsOfTableDataForCryptoCurrenciesTable;
+    }
+
+
 }
