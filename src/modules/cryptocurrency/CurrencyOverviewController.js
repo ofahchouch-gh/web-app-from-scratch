@@ -107,5 +107,15 @@ export default class CurrencyOverviewController {
         return tableWithCryptoCurrenciesToBeDisplayed
     }
 
+    async putOverview() {
+        const listOfMostPopularCryptoBidPrices = await this.fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto();
+        let tableSectionDomElement = document.getElementsByTagName('section')[0];
+    
+        const tableWithCryptoCurrenciesToBeDisplayed = this.putTable(listOfMostPopularCryptoBidPrices);
+    
+        tableSectionDomElement.insertAdjacentHTML('beforeend', tableWithCryptoCurrenciesToBeDisplayed);
+        this.styleProfitOrLossTableData();
+    }
+
    
 }
