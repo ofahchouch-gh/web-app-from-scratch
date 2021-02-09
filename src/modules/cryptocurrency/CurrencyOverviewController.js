@@ -139,5 +139,31 @@ export default class CurrencyOverviewController {
         return listOfMostPopularCryptoBidPrices;
     }
 
+    getLowestBidPriceOfFetchedTicker(ticker) {
+        let lowestBidPriceOfFetchedTicker = ticker.bids[0];
     
+        ticker.bids.find(fetchedBidPriceOfTicker => {
+            const bidPriceOfFetchedTicker = fetchedBidPriceOfTicker[0];
+    
+            if(bidPriceOfFetchedTicker < lowestBidPriceOfFetchedTicker) {
+                lowestBidPriceOfFetchedTicker = bidPriceOfFetchedTicker;
+            }
+        });
+    
+        return lowestBidPriceOfFetchedTicker;
+    }
+
+    getHighestAskPriceOfFetchedTicker(ticker) {
+        let highestAskPriceOfFetchedTicker = ticker.asks[0];
+    
+        ticker.asks.find(fetchedAskPriceOfTicker => {
+            const askPriceOfFetchedTicker = fetchedAskPriceOfTicker[0];
+    
+            if(askPriceOfFetchedTicker > highestAskPriceOfFetchedTicker) {
+                highestAskPriceOfFetchedTicker = askPriceOfFetchedTicker;
+            }
+        });
+    
+        return highestAskPriceOfFetchedTicker;
+    }
 }
