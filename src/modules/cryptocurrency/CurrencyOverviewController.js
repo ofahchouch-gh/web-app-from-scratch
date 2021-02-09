@@ -117,5 +117,27 @@ export default class CurrencyOverviewController {
         this.styleProfitOrLossTableData();
     }
 
-   
+    filterTable() {}
+
+    async fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto() {
+        let listOfMostPopularCryptoBidPrices = [];
+        
+        for(const popularCryptoTickerName of this.listOfMostPopularCryptoTickerNames) {
+            const fetchedBidAndAskPriceOfSpecificTicker = await this.binanceApiHandler.fetchBidAndAskPriceOfTicker(popularCryptoTickerName);
+            const lowestBidPriceOfFetchedTicker = Number.parseFloat(this.getLowestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
+            const highestAskPriceOfFetchedTicker = Number.parseFloat(this.getHighestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
+            const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((highestAskPriceOfFetchedTicker - lowestBidPriceOfFetchedTicker)).toFixed(2);
+    
+            listOfMostPopularCryptoBidPrices.push({ 
+                'Popular crypto ticker name (USDT)': popularCryptoTickerName,
+                'Current avg. lowest bid price ($/USDT)': lowestBidPriceOfFetchedTicker,
+                'Current avg. highest ask price ($/USDT)': highestAskPriceOfFetchedTicker,
+                'Current avg. profit/loss with 1 coin ($/USDT)': potentialProfitOrLossThatCouldBeMade
+            });
+        }
+    
+        return listOfMostPopularCryptoBidPrices;
+    }
+
+    
 }
