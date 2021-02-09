@@ -3,11 +3,13 @@ import CurrencyOverviewController from './CurrencyOverviewController.js';
 import Router from './../../router/router.js';
 
 export default class CurrencyOverview {
+    coinDetailViewSectionName;
     router;
     currencyOverviewController;
     currencyOverviewModel;
     
     constructor() {
+        this.coinDetailViewSectionName = 'coin';
         this.router = new Router();
         this.currencyOverviewController = new CurrencyOverviewController();
         // this.currencyOverviewModel = new CurrencyOverviewModel();
@@ -18,7 +20,7 @@ export default class CurrencyOverview {
     }
 
     routeToCoinDetailView(coinToBeDisplayed) {
-        console.log(coinToBeDisplayed);
+        this.router.route(this.coinDetailViewSectionName, coinToBeDisplayed);
     }
 }
 

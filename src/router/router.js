@@ -1,18 +1,26 @@
+import CoinDetailView from './../modules/coin/CoinDetailView.js';
+
 routie('overview', () => {
-    console.log('overview..');
-    // render currency overview
+    document.getElementsByTagName('section')[1].style.display = 'none';
+    document.getElementsByTagName('section')[0].style.display = 'flex';
 });
 
 routie('coin/:nameOfCoinToBeDisplayed', (nameOfCoinToBeDisplayed) => {
-    console.log(nameOfCoinToBeDisplayed);
-    // render coin detail view
+    document.getElementsByTagName('section')[0].style.display = 'none';
+    document.getElementsByTagName('section')[1].style.display = 'flex';
 });
 
 export default class Router {
+    constructor(ViewToRouteTo) {
+        console.log('ViewToRouteTo', ViewToRouteTo)
+    }
+    
     route(viewToRouteTo, params) {
         if (params === null) {
             routie(viewToRouteTo); 
         } else {
+            const coinDetailView = new CoinDetailView();
+            coinDetailView.renderDetailView(params);
             routie(`${viewToRouteTo}/${params}`);
         }
     }

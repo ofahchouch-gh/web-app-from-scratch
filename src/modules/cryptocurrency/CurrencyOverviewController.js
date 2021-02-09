@@ -123,13 +123,11 @@ export default class CurrencyOverviewController {
         for (let indexOfTickerNameInTableData = 0; indexOfTickerNameInTableData < (this.listOfMostPopularCryptoTickerNames.length); indexOfTickerNameInTableData++) {
             document.getElementsByTagName("td")[indexOfTickerNameInTableData].addEventListener('click', function (mouseEvent) {
                 const currencyOverview = new CurrencyOverview();
-                tickerNameToBeRoutedTo = mouseEvent.srcElement.innerText;
+                const tickerNameToBeRoutedTo = mouseEvent.srcElement.innerText;
                 currencyOverview.routeToCoinDetailView(tickerNameToBeRoutedTo);
             });  
         }
     }
-
-    filterTable() {}
 
     async fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto() {
         let listOfMostPopularCryptoBidPrices = [];
@@ -178,4 +176,6 @@ export default class CurrencyOverviewController {
     
         return highestAskPriceOfFetchedTicker;
     }
+
+    filterTable() {}
 }
