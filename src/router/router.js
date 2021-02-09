@@ -11,11 +11,19 @@ routie('coin/:nameOfCoinToBeDisplayed', (nameOfCoinToBeDisplayed) => {
 });
 
 export default class Router {
-    constructor() {}
+    constructor() {
+        window.addEventListener('popstate', function(event) {
+            setTimeout(function(){ 
+                if (window.location.href.slice(-1) === '/') {
+                    window.location = document.referrer;
+                }            
+             }, 50);
+        }, false);
+    }
 
     route(viewToRouteTo, params) {
         if (params === null) {
-            routie(viewToRouteTo); 
+            routie(viewToRouteTo);
         } else {
             const coinDetailView = new CoinDetailView();
             coinDetailView.renderDetailView(params);

@@ -3,11 +3,13 @@ import CoinDetailModel from './CoinDetailModel.js';
 import Router from './../../router/router.js';
 
 export default class CoinDetailView {
+    currencyOverviewName;
     coinToBeDisplayed;
     router;
 
     constructor() {
         this.router = new Router();
+        this.currencyOverviewName = 'overview';
     }
     
     renderDetailView(coinToBeDisplayed) {
@@ -17,6 +19,11 @@ export default class CoinDetailView {
 
     createDetailPanel() {
         let detailSectionDomElement = document.getElementsByTagName('section')[1];
+
+        while (detailSectionDomElement.firstChild) {
+            detailSectionDomElement.firstChild.remove()
+        }
+
         detailSectionDomElement.insertAdjacentHTML('beforeend', `<div class="flex-container"></grid-container>`);
 
         const gridContainerElements = ['header', 'main', 'footer']
@@ -49,13 +56,15 @@ export default class CoinDetailView {
 
     createHeaderInDetailPanel(gridContainerElements) {
         const headerGridItemDomElement = document.getElementsByClassName('item1')[0];
-        headerGridItemDomElement.insertAdjacentHTML('afterbegin', `<h2>back</h2><h2 id="testt" style="text-align: center;">${this.coinToBeDisplayed}</h2>`);
+        headerGridItemDomElement.insertAdjacentHTML('afterbegin', `<h2 id="back-to-overview">back</h2><h2 style="text-align: center;">${this.coinToBeDisplayed}</h2>`);
 
-        document.getElementById('testt').addEventListener('click', function (mouseEvent) {
-            // const currencyOverview = new CurrencyOverview();
-            const innerText = mouseEvent.srcElement.innerText;
-            console.log(innerText)
-            // currencyOverview.routeToCoinDetailView(tickerNameToBeRoutedTo);
+        document.getElementById('back-to-overview').addEventListener('click', function () {
+            const coinDetailView = new CoinDetailView();
+            coinDetailView.routeToCurrencyOverview();
         });  
+    }
+
+    routeToCurrencyOverview() {
+        this.router.route(this.currencyOverviewName, null);
     }
 }

@@ -78,8 +78,9 @@ td {
     padding-bottom: 1vh;
 }
 
-tbody tr td:hover {
+tbody tr:nth-child(1) td:hover {
     cursor: pointer;
+    font-weight: bold;
 }
 
 aside {
