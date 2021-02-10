@@ -125,3 +125,15 @@ section:nth-child(2) {
     border: 1px solid #DCDCDC;
     border-radius: 5px;
 }
+
+span {
+    font-weight: bold;
+}
+
+#go-back-to-overview {
+    cursor: pointer;
+}
+
+#go-back-to-overview:hover {
+    text-decoration: underline;
+}

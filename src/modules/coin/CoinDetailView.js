@@ -46,7 +46,9 @@ export default class CoinDetailView {
                 default:
               }
 
-              flexContainerDomElement.insertAdjacentHTML('beforeend', `<div class="item${elementCounter}" style=":${heightOfFlexContainerChild}%; width: 100%;"></div>`);
+            flexContainerDomElement.insertAdjacentHTML('beforeend', `
+                <div class="item${elementCounter}" style=":${heightOfFlexContainerChild}%; width: 100%;"></div>
+            `);
 
             elementCounter++;
         }
@@ -56,9 +58,15 @@ export default class CoinDetailView {
 
     createHeaderInDetailPanel(gridContainerElements) {
         const headerGridItemDomElement = document.getElementsByClassName('item1')[0];
-        headerGridItemDomElement.insertAdjacentHTML('afterbegin', `<h2 id="back-to-overview">back</h2><h2 style="text-align: center;">${this.coinToBeDisplayed}</h2>`);
+        headerGridItemDomElement.insertAdjacentHTML('afterbegin', `
+            <div style="padding-top: 25px; padding-left: 25px;">
+                <span id="go-back-to-overview" style="">Top 20 overview</span>
+                <span> > ${this.coinToBeDisplayed}</span>
+            </div>
+            <h2 style="text-align: center;">${this.coinToBeDisplayed}</h2>
+        `);
 
-        document.getElementById('back-to-overview').addEventListener('click', function () {
+        document.getElementById('go-back-to-overview').addEventListener('click', function () {
             const coinDetailView = new CoinDetailView();
             coinDetailView.routeToCurrencyOverview();
         });  
