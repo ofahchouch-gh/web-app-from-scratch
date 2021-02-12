@@ -6,15 +6,20 @@ export default class CoinDetailView {
     currencyOverviewName;
     coinToBeDisplayed;
     router;
+    coinDetailController;
 
     constructor() {
         this.router = new Router();
+        this.coinDetailController = new CoinDetailController();
         this.currencyOverviewName = 'overview';
     }
     
     renderDetailView(coinToBeDisplayed) {
         this.coinToBeDisplayed = coinToBeDisplayed;
         this.createDetailPanel();
+
+        //test
+        this.coinDetailController.fetchCandleStickDataOfTicker(coinToBeDisplayed);
     }
 
     createDetailPanel() {

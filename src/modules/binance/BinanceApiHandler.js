@@ -9,8 +9,8 @@ export default class binanceApiHandler {
         try {
             const url = `${this.BINANCE_API_URL_PREFIX}/exchangeInfo`;
     
-            const fetchAllTickersApiResponse = await fetch(`${url}`, { method: 'GET' });
-            const fetchedTickers = await fetchAllTickersApiResponse.json();
+            const fetchedTickersApiResponse = await fetch(`${url}`, { method: 'GET' });
+            const fetchedTickers = await fetchedTickersApiResponse.json();
             
             return fetchedTickers;
         } catch(error) {
@@ -18,12 +18,12 @@ export default class binanceApiHandler {
         }
     }
 
-    async fetchBidAndAskPriceOfTicker(nameOfTicker) {
+    async fetchBidAndAskPriceOfTicker(nameOfTickerToBeFetched) {
         try {
-            const url = `${this.BINANCE_API_URL_PREFIX}/depth?symbol=${nameOfTicker}&limit=5`;
+            const url = `${this.BINANCE_API_URL_PREFIX}/depth?symbol=${nameOfTickerToBeFetched}&limit=5`;
     
-            const fetchSpecificTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
-            const fetchedTicker = await fetchSpecificTickerApiResponse.json();
+            const fetchedSpecificTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
+            const fetchedTicker = await fetchedSpecificTickerApiResponse.json();
     
             return fetchedTicker;
         } catch(error) {
@@ -31,5 +31,33 @@ export default class binanceApiHandler {
         }
     }
 
-    async fetchAllDetailsOfTicker(nameOfTicker) {}
+    async fetchAllDetailsOfTicker(nameOfTickerToBeFetched) {
+        try {
+            const url = `${this.BINANCE_API_URL_PREFIX}`;
+    
+            const fetchedTickerWithAllDetailsApiResponse = await fetch(`${url}`, { method: 'GET' });
+            const fetchedTicker = await fetchedTickerWithAllDetailsApiResponse.json();
+    
+            return fetchedTicker;
+        } catch(error) {
+            console.log('failed to fetch all details of ticker: ', error);
+        }
+    }
+
+    async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched, interval, startTime, endTime, limit) {
+        try {
+            const url = `${this.BINANCE_API_URL_PREFIX}/klines?symbol=${nameOfTickerToBeFetched}&` +
+            `interval=${interval}&` +
+            `startTime=${startTime}&` +
+            `endTime=${endTime}&` +
+            `limit=${limit}`;
+    
+            const fetchedCandleStickDataOfTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
+            const fetchedCandleStickDataOfticker = await fetchedCandleStickDataOfTickerApiResponse.json();
+    
+            return fetchedCandleStickDataOfticker;
+        } catch(error) {
+            console.log('failed to fetch candle stick data of ticker: ', error);
+        }
+    }
 }
