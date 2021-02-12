@@ -186,7 +186,8 @@ export default class CurrencyOverviewController {
     addIconAsImgTagOfTickerToBeDisplayedInTableData(ticker) {
         const nameOfTicker = ticker[Object.keys(ticker)[0]];
         const slicedAndToLowerCaseNameOfTicker = nameOfTicker.slice(0, -4).toLowerCase();
-        const iconAsImgTagOfTickerToBeAddedToTableData = `<img src="/src/assets/imgs/icons/${slicedAndToLowerCaseNameOfTicker}.png" width="12px" height="12px"alt="${nameOfTicker}_icon">`
+        const iconAsImgTagOfTickerToBeAddedToTableData = `<img src="./src/assets/imgs/icons/${slicedAndToLowerCaseNameOfTicker}.png"` +
+        `width="12px" height="12px" alt="${nameOfTicker}_icon">`;
 
         return iconAsImgTagOfTickerToBeAddedToTableData;
     }
