@@ -57,8 +57,14 @@ export default class CurrencyOverviewController {
         
             for(const popularCrypto of listOfDataAboutCryptoObject) {
                 let tableDataWithPopularCrypto = '<td>';
-        
+                
                 let currentPropertyToString = Object.keys(popularCrypto)[currentPropertyToBeSetInTableDataCounter];
+                
+                if(currentPropertyToString === Object.keys(popularCrypto)[0]) {
+                    tableDataWithPopularCrypto += this.addIconAsImgTagOfTickerToBeDisplayedInTableData(popularCrypto);
+                    tableDataWithPopularCrypto += '&nbsp; ';
+                }
+
                 tableDataWithPopularCrypto +=  popularCrypto[currentPropertyToString]
 
                 tableDataWithPopularCrypto += '</td>';
@@ -175,6 +181,14 @@ export default class CurrencyOverviewController {
         });
     
         return highestAskPriceOfFetchedTicker;
+    }
+
+    addIconAsImgTagOfTickerToBeDisplayedInTableData(ticker) {
+        const nameOfTicker = ticker[Object.keys(ticker)[0]];
+        const slicedAndToLowerCaseNameOfTicker = nameOfTicker.slice(0, -4).toLowerCase();
+        const iconAsImgTagOfTickerToBeAddedToTableData = `<img src="/src/assets/imgs/icons/${slicedAndToLowerCaseNameOfTicker}.png" width="12px" height="12px"alt="${nameOfTicker}_icon">`
+
+        return iconAsImgTagOfTickerToBeAddedToTableData;
     }
 
     filterTable() {}
