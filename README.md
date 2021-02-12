@@ -5,6 +5,10 @@ This is my repo for the Web App From Scratch course.
 ## Live :globe_with_meridians:
 https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
+<p align="center">
+  <img src="others/docs/imgs/cryptowallpaper.jpg" />
+</p>
+
 ## Table of Contents 🗃
 * [Description](#description-)
 * [Actors & Interaction](#actors--interaction-pencil2)
@@ -56,7 +60,7 @@ Nog aan te passen in klassen diagram, opnieuw een check doen.. -->
 - prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1 of minor)
 
 ## Installing 🔍
-To install this application enter the following into your terminal:
+To install this application enter the following into your terminal (currently works only on Linux/Mac based operating systems):
 ```
 git clone https://github.com/ofahchouch-gh/ofahchouch-gh.web-app-from-scratch.github.io.git
 
