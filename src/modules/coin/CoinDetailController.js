@@ -21,19 +21,23 @@ export default class CoinDetailController {
 
     async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched) {
         // test
+        const currentDate = new Date();
+        const dateOfYesterday = new Date();
+        dateOfYesterday.setDate(currentDate.getDate() - 1);
+
         const intervalOfCandleStickData = '1h';
-        const startTimeOfCandleSticksInMs = 1613023777000;
-        const endTimeOfCandleSticksInMs = 1613110177000;
+        const startTimeOfCandleSticksInMs = dateOfYesterday.getTime();
+        const endTimeOfCandleSticksInMs = currentDate.getTime();
         const limit = 1000;
 
         const fetchedCandleStickDataOfTicker = await this.binanceApiHandler.fetchCandleStickDataOfTicker(
-            nameOfTickerToBeFetched,
+            nameOfTickerToBeFetched.replace(/\s/g, ''),
             intervalOfCandleStickData,
             startTimeOfCandleSticksInMs,
             endTimeOfCandleSticksInMs,
             limit
         );
-
-        console.log(fetchedCandleStickDataOfTicker);
+        
+        this.createBullishOrBearishCandleSticks(fetchedCandleStickDataOfTicker);
     }
 }

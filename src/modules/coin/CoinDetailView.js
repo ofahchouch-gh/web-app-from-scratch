@@ -19,7 +19,7 @@ export default class CoinDetailView {
         this.createDetailPanel();
 
         //test
-        this.coinDetailController.fetchCandleStickDataOfTicker(coinToBeDisplayed);
+        this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
     }
 
     createDetailPanel() {

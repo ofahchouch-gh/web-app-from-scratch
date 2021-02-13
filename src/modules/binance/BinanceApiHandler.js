@@ -51,7 +51,7 @@ export default class binanceApiHandler {
             `startTime=${startTime}&` +
             `endTime=${endTime}&` +
             `limit=${limit}`;
-    
+
             const fetchedCandleStickDataOfTickerApiResponse = await fetch(`${url}`, { method: 'GET' });
             const fetchedCandleStickDataOfticker = await fetchedCandleStickDataOfTickerApiResponse.json();
     
