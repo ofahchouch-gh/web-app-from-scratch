@@ -40,4 +40,24 @@ export default class CoinDetailController {
         
         this.createBullishOrBearishCandleSticks(fetchedCandleStickDataOfTicker);
     }
+
+    createBullishOrBearishCandleSticks(fetchedCandleStickDataOfTicker) {
+        for (const candleStick of fetchedCandleStickDataOfTicker) {
+            const candleStickOpenPrice = candleStick[1];
+            const candleStickClosePrice = candleStick[4];
+
+            const candleStickOpenTimeInEpoch = candleStick[0];
+            const candleStickCloseTimeInEpoch = candleStick[6];
+
+            const candleStickOpenPriceInLocalDate = new Date(candleStickOpenTimeInEpoch).toLocaleString();
+            const candleStickClosePriceInLocalDate = new Date(candleStickCloseTimeInEpoch).toLocaleString();
+            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenPriceInLocalDate} to ${candleStickClosePriceInLocalDate}`;
+            
+            if(candleStickClosePrice > candleStickOpenPrice) {
+                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
+            } else {
+                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
+            }
+        }
+    }
 }
