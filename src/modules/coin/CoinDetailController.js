@@ -44,6 +44,8 @@ export default class CoinDetailController {
     }
 
     createBullishOrBearishCandleSticks(nameOfTicker, fetchedCandleStickDataOfTicker) {
+        let candlesticks = [];
+
         for (const candleStick of fetchedCandleStickDataOfTicker) {
             const candlestickModel = new CandlestickModel(nameOfTicker, 
                 candleStick[0], 
@@ -56,12 +58,63 @@ export default class CoinDetailController {
             const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
             const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
             
-            // test
-            if(candlestickModel.bullish) {
+            // if(candlestickModel.bullish) {
+            //     console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
+            // } else {
+            //     console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
+            // }
+
+            candlesticks.push(candlestickModel);
+        }
+
+        this.checkIfCandlestickIsAHigherHighOrHigherLow(candlesticks);
+    }
+
+    checkIfCandlestickIsAHigherHighOrHigherLow(candlesticks) {
+        let previousCandlestick = candlesticks[0];
+        let currentHigherHigh = candlesticks[0];
+        let currentHigherLow = null;
+
+        let smallestCandleStickWaves = [];
+        let current3CandleStickWave = [];
+
+        for(const candlestick of candlesticks) {
+            //test
+            const candleStickOpenTimeInLocalDate = new Date(candlestick.openTimeInMs).toLocaleString();
+            const candleStickCloseTimeInLocalDate = new Date(candlestick.closeTimeInMs).toLocaleString();
+            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
+
+            if(candlestick.bullish) {
                 console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
             } else {
                 console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
             }
+            //
+
+            if (current3CandleStickWave.length <= 1) {
+                current3CandleStickWave.push(candlestick);
+            } else {
+                current3CandleStickWave.push(candlestick);
+
+                if () {
+
+                }
+
+                smallestCandleStickWaves.push(current3CandleStickWave);
+                current3CandleStickWave = [];
+            }
+            
+            // if (candlestick.closePrice > previousCandlestick.closePrice) {
+            //     console.log('higher then previous');
+            // } else if (candlestick.closePrice < previousCandlestick.closePrice) {
+            //     console.log('lower then previous');
+            // } else {
+            //     console.log('starting point');
+            // }
+
+            previousCandlestick = candlestick;
         }
+
+        console.log(smallestCandleStickWaves);
     }
 }

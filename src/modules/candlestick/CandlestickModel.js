@@ -5,6 +5,7 @@ export default class CandlestickModel {
     closePrice;
     closeTimeInMs;
     bullish;
+    typeOfCandlestick;
 
     constructor(tickerName, openTimeInMs, openPrice, closePrice, closeTimeInMs) {
         this.tickerName = tickerName;
