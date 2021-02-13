@@ -1,5 +1,6 @@
 import BinanceApiHandler from '../binance/BinanceApiHandler.js';
 import CoinDetailModel from './CoinDetailModel.js';
+import CandlestickModel from './../candlestick/CandlestickModel.js';
 
 export default class CoinDetailController {
     coinDetailModel;
@@ -21,6 +22,7 @@ export default class CoinDetailController {
 
     async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched) {
         // test
+        nameOfTickerToBeFetched = nameOfTickerToBeFetched.replace(/\s/g, '');
         const currentDate = new Date();
         const dateOfYesterday = new Date();
         dateOfYesterday.setDate(currentDate.getDate() - 1);
@@ -31,29 +33,31 @@ export default class CoinDetailController {
         const limit = 1000;
 
         const fetchedCandleStickDataOfTicker = await this.binanceApiHandler.fetchCandleStickDataOfTicker(
-            nameOfTickerToBeFetched.replace(/\s/g, ''),
+            nameOfTickerToBeFetched,
             intervalOfCandleStickData,
             startTimeOfCandleSticksInMs,
             endTimeOfCandleSticksInMs,
             limit
         );
         
-        this.createBullishOrBearishCandleSticks(fetchedCandleStickDataOfTicker);
+        this.createBullishOrBearishCandleSticks(nameOfTickerToBeFetched, fetchedCandleStickDataOfTicker);
     }
 
-    createBullishOrBearishCandleSticks(fetchedCandleStickDataOfTicker) {
+    createBullishOrBearishCandleSticks(nameOfTicker, fetchedCandleStickDataOfTicker) {
         for (const candleStick of fetchedCandleStickDataOfTicker) {
-            const candleStickOpenPrice = candleStick[1];
-            const candleStickClosePrice = candleStick[4];
+            const candlestickModel = new CandlestickModel(nameOfTicker, 
+                candleStick[0], 
+                candleStick[1], 
+                candleStick[4], 
+                candleStick[6]
+            );
 
-            const candleStickOpenTimeInEpoch = candleStick[0];
-            const candleStickCloseTimeInEpoch = candleStick[6];
-
-            const candleStickOpenPriceInLocalDate = new Date(candleStickOpenTimeInEpoch).toLocaleString();
-            const candleStickClosePriceInLocalDate = new Date(candleStickCloseTimeInEpoch).toLocaleString();
-            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenPriceInLocalDate} to ${candleStickClosePriceInLocalDate}`;
+            const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
+            const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
+            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
             
-            if(candleStickClosePrice > candleStickOpenPrice) {
+            // test
+            if(candlestickModel.bullish) {
                 console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
             } else {
                 console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
