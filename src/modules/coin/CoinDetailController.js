@@ -1,6 +1,7 @@
 import BinanceApiHandler from '../binance/BinanceApiHandler.js';
 import CoinDetailModel from './CoinDetailModel.js';
-import CandlestickModel from './../candlestick/CandlestickModel.js';
+import CandlestickModel from '../shared/models/candlestick/CandlestickModel.js';
+import Smallest3CandlestickWaveModel from '../shared/models/wave/Smallest3CandlestickWaveModel.js';
 
 export default class CoinDetailController {
     coinDetailModel;
@@ -96,25 +97,38 @@ export default class CoinDetailController {
             } else {
                 current3CandleStickWave.push(candlestick);
 
-                if () {
+                const smallest3CandlestickWaveModel = new Smallest3CandlestickWaveModel(
+                    current3CandleStickWave[0],
+                    current3CandleStickWave[1],
+                    current3CandleStickWave[2]
+                );
 
-                }
-
-                smallestCandleStickWaves.push(current3CandleStickWave);
+                smallestCandleStickWaves.push(smallest3CandlestickWaveModel);
                 current3CandleStickWave = [];
             }
-            
-            // if (candlestick.closePrice > previousCandlestick.closePrice) {
-            //     console.log('higher then previous');
-            // } else if (candlestick.closePrice < previousCandlestick.closePrice) {
-            //     console.log('lower then previous');
-            // } else {
-            //     console.log('starting point');
-            // }
 
             previousCandlestick = candlestick;
         }
 
-        console.log(smallestCandleStickWaves);
+        let previousSmallestCandlestickWave = null;
+        let waveCounter = 1;
+        for (const smallestCandlestickWave of smallestCandleStickWaves) {
+            console.log(`Wave ${waveCounter} of a 3 candlestick long wave is in an uptrend: ${smallestCandlestickWave.checkIfIsInAnUptrend()}`);
+
+            if(previousSmallestCandlestickWave) {
+                if (
+                    smallestCandlestickWave.lastCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice &&
+                    smallestCandlestickWave.middleCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice
+                ) {
+                    console.log('buy moment');
+                }
+
+                previousSmallestCandlestickWave = smallestCandlestickWave;
+            } else {
+                previousSmallestCandlestickWave = smallestCandlestickWave;
+            }
+
+            waveCounter++;
+        }
     }
 }

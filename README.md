@@ -16,7 +16,8 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 * [Done](#done-construction_worker)
 * [Installing](#installing-)
 * [API](#api-)
-    * [Overview Page](#overview-page)
+  * [Overview Page](#overview-page)
+  * [Coin Detail Page](#coin-detail-page)
 
 ## Description 📝
 During this course I created a web app from scratch, so without any frameworks, using HTML, CSS and Javascript. The goal is to make a web app from scratch where
@@ -105,3 +106,5 @@ The limits on the API are based on the IPs, not the API keys.
 ## Overview Page
 - :construction:
 
+## Coin Detail Page
+- :construction:
