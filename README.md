@@ -43,12 +43,12 @@ Examples:
 More info about the endpoints i am using can be found here: [API](#api-).
 
 ## Actors & Interaction :pencil2:
-<!-- 
-Nog aan te passen in klassen diagram, opnieuw een check doen.. -->
+(moet nog geupdate worden)
 <p align="center">
   <img src="others/docs/imgs/actors.png" />
 </p>
 
+(moet nog geupdate worden)
 <p align="center">
   <img src="others/docs/imgs/interaction.png" />
 </p>
@@ -105,7 +105,7 @@ intervalNum describes the amount of the interval. For example, intervalNum 5 wit
 The /api/v3/exchangeInfo rateLimits array contains objects related to the exchange's RAW_REQUEST, REQUEST_WEIGHT, and ORDER rate limits. These are further defined in the ENUM definitions section under Rate limiters (rateLimitType).
 A 429 will be returned when either rate limit is violated.
 
-When we call /api/v3/exchangeInfo we will receive the current info about the rate limits.
+When we call /api/v3/exchangeInfo we will receive the current info about the rate limit.
 
 {
     "rateLimitType":"REQUEST_WEIGHT",

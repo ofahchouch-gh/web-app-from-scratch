@@ -1,4 +1,5 @@
 import CoinDetailView from './../modules/coin/CoinDetailView.js';
+import './../libs/routie.js';
 
 routie('overview', () => {
     document.getElementsByTagName('section')[1].style.display = 'none';
