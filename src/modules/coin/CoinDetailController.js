@@ -55,9 +55,9 @@ export default class CoinDetailController {
                 candleStick[6]
             );
 
-            const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
-            const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
-            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
+            // const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
+            // const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
+            // const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
             
             // if(candlestickModel.bullish) {
             //     console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
@@ -80,18 +80,6 @@ export default class CoinDetailController {
         let current3CandleStickWave = [];
 
         for(const candlestick of candlesticks) {
-            //test
-            const candleStickOpenTimeInLocalDate = new Date(candlestick.openTimeInMs).toLocaleString();
-            const candleStickCloseTimeInLocalDate = new Date(candlestick.closeTimeInMs).toLocaleString();
-            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
-
-            if(candlestick.bullish) {
-                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
-            } else {
-                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
-            }
-            //
-
             if (current3CandleStickWave.length <= 1) {
                 current3CandleStickWave.push(candlestick);
             } else {
@@ -120,7 +108,7 @@ export default class CoinDetailController {
                     smallestCandlestickWave.lastCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice &&
                     smallestCandlestickWave.middleCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice
                 ) {
-                    console.log('buy moment');
+                    //
                 }
 
                 previousSmallestCandlestickWave = smallestCandlestickWave;

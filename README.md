@@ -94,6 +94,28 @@ For POST, PUT, and DELETE endpoints, the parameters may be sent as a query strin
 Parameters may be sent in any order.
 If a parameter sent in both the query string and request body, the query string parameter will be used.
 
+**General info on Rate Limits** 
+The following intervalLetter values for headers:
+  - SECOND => S
+  - MINUTE => M
+  - HOUR => H
+  - DAY => D
+
+intervalNum describes the amount of the interval. For example, intervalNum 5 with intervalLetter M means "Every 5 minutes".
+The /api/v3/exchangeInfo rateLimits array contains objects related to the exchange's RAW_REQUEST, REQUEST_WEIGHT, and ORDER rate limits. These are further defined in the ENUM definitions section under Rate limiters (rateLimitType).
+A 429 will be returned when either rate limit is violated.
+
+When we call /api/v3/exchangeInfo we will receive the current info about the rate limits.
+
+{
+    "rateLimitType":"REQUEST_WEIGHT",
+    "interval":"MINUTE",
+    "intervalNum":1,
+    "limit":1200
+}
+
+We can make 20 (1200/60) requests per second.
+
 **IP Limits**
 Every request will contain X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter) in the response headers which has the current used weight for the IP for all request rate limiters defined.
 Each route has a weight which determines for the number of requests each endpoint counts for. Heavier endpoints and endpoints that do operations on multiple symbols will have a heavier weight.
