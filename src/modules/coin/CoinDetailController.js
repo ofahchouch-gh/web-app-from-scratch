@@ -25,16 +25,15 @@ export default class CoinDetailController {
 
         nameOfTickerToBeFetched = nameOfTickerToBeFetched.replace(/\s/g, '');
         const currentDate = new Date();
-        const dateOfYesterday = new Date();
-        const amountOfDaysToLookBackInto = 7;
-        dateOfYesterday.setDate(currentDate.getDate() - amountOfDaysToLookBackInto);
+        const amountOfDaysToLookBackInto = 1;
+        const oneHourInEpochFormat = (1000*60*60);
 
-        const intervalOfCandleStickData = '1d';
-        const startTimeOfCandleSticksInMs = dateOfYesterday.getTime();
+        const intervalOfCandleStickData = '1m';
+        const startTimeOfCandleSticksInMs = (currentDate.getTime() - (oneHourInEpochFormat / 10));
         const endTimeOfCandleSticksInMs = currentDate.getTime();
         const limit = 1000;
 
-        const dateFormatOptions = { month: 'numeric', day: 'numeric' };
+        const dateFormatOptions = { timeZone: 'UTC', timeZoneName: 'short' };
 
         const fetchedCandleStickDataOfTicker = await this.binanceApiHandler.fetchCandleStickDataOfTicker(
             nameOfTickerToBeFetched,
@@ -45,8 +44,8 @@ export default class CoinDetailController {
         );
         
         for (const candleStick of fetchedCandleStickDataOfTicker) {
-            const openTime = new Date(candleStick[0]).toLocaleDateString('en-US', dateFormatOptions);
-            const closeTime = new Date(candleStick[6]).toLocaleDateString('en-US', dateFormatOptions);
+            const openTime = new Date(candleStick[0]).toLocaleTimeString('en-US', dateFormatOptions);
+            const closeTime = new Date(candleStick[6]).toLocaleTimeString('en-US', dateFormatOptions);
 
             const candlestickModel = new CandlestickModel(nameOfTickerToBeFetched, 
                 openTime,

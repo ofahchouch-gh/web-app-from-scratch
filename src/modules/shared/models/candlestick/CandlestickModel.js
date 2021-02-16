@@ -10,8 +10,8 @@ export default class CandlestickModel {
     constructor(tickerName, openTime, openPrice, closePrice, closeTime) {
         this.tickerName = tickerName;
         this.openTime = openTime;
-        this.openPrice = openPrice;
-        this.closePrice = closePrice;
+        this.openPrice = parseInt(openPrice).toFixed();
+        this.closePrice = parseInt(closePrice).toFixed();
         this.closeTime = closeTime;
     }
 }

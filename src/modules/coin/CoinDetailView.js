@@ -79,7 +79,10 @@ export default class CoinDetailView {
         const mainItemElementInCoinDetailFlexContainer = document.getElementsByClassName('item2')[0];
 
         mainItemElementInCoinDetailFlexContainer.insertAdjacentHTML('beforeend', 
-            `<div class="ct-chart ct-perfect-fourth"></div>`
+            `
+                <div class="ct-chart ct-perfect-fourth"></div>
+                <aside id="lineChartLoader"></aside>
+            `
         );
 
         const cadleSticksOfLastSevenDays = await this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
@@ -96,6 +99,7 @@ export default class CoinDetailView {
 
         setTimeout(() => {
             new Chartist.Line('.ct-chart', chartData);
+            document.getElementById('lineChartLoader').style.display = 'none';
         }, 50);
     }
 
