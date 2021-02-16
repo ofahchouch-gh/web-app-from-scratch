@@ -1,6 +1,7 @@
 import CoinDetailController from './CoinDetailController.js';
 import CoinDetailModel from './CoinDetailModel.js';
 import Router from './../../router/router.js';
+import TChart from  './../../libs/tChart.js';
 
 export default class CoinDetailView {
     currencyOverviewName;
@@ -13,7 +14,7 @@ export default class CoinDetailView {
         this.coinDetailController = new CoinDetailController();
         this.currencyOverviewName = 'overview';
     }
-    
+
     renderDetailView(coinToBeDisplayed) {
         this.coinToBeDisplayed = coinToBeDisplayed;
         this.createDetailPanel();

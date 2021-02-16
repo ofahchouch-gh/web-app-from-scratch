@@ -114,7 +114,7 @@ When we call /api/v3/exchangeInfo we will receive the current info about the rat
     "limit":1200
 }
 
-We can make 20 (1200/60) requests per second.
+So we can make 20 (1200/60) requests per second.
 
 **IP Limits**
 Every request will contain X-MBX-USED-WEIGHT-(intervalNum)(intervalLetter) in the response headers which has the current used weight for the IP for all request rate limiters defined.

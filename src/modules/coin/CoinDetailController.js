@@ -19,6 +19,8 @@ export default class CoinDetailController {
         const fetchedTickerWithAllDetails = await this.binanceApiHandler.fetchAllDetailsOfTicker(nameOfTickerToBeFetched);
 
         console.log(fetchedTickerWithAllDetails);
+        
+        this.createLineChart();
     }
 
     async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched) {
@@ -55,15 +57,15 @@ export default class CoinDetailController {
                 candleStick[6]
             );
 
-            // const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
-            // const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
-            // const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
+            const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
+            const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
+            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
             
-            // if(candlestickModel.bullish) {
-            //     console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
-            // } else {
-            //     console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
-            // }
+            if(candlestickModel.bullish) {
+                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
+            } else {
+                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
+            }
 
             candlesticks.push(candlestickModel);
         }
@@ -118,5 +120,45 @@ export default class CoinDetailController {
 
             waveCounter++;
         }
+    }
+
+     // moet weg na testen
+     getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    createLineChart() {
+        let min = 40000;
+        let max = 50000;
+
+        let data = [
+          { label: "Jan", value: this.getRandomInt(min, max) },
+          { label: "Feb", value: this.getRandomInt(min, max) },
+          { label: "March", value: this.getRandomInt(min, max) },
+          { label: "April", value: this.getRandomInt(min, max) },
+          { label: "May", value: this.getRandomInt(min, max) },
+          { label: "June", value: this.getRandomInt(min, max) },
+          { label: "July", value: this.getRandomInt(min, max) },
+          { label: "Aug", value: this.getRandomInt(min, max) },
+          { label: "Sep", value: this.getRandomInt(min, max) },
+          { label: "Feb", value: this.getRandomInt(min, max) },
+          { label: "March", value: this.getRandomInt(min, max) },
+          { label: "April", value: this.getRandomInt(min, max) },
+          { label: "May", value: this.getRandomInt(min, max) },
+          { label: "June", value: this.getRandomInt(min, max) },
+          { label: "July", value: this.getRandomInt(min, max) },
+          { label: "Aug", value: this.getRandomInt(min, max) },
+          { label: "Sep", value: this.getRandomInt(min, max) },
+        ];
+      
+        let targetId1 = "lineChart";
+        let canvas1Width = 320;
+        let canvas1Height = 675;
+    
+        let chart1 = new TChart(targetId1, canvas1Width, canvas1Height, data);
+        chart1.drawLineChart({ animation: true });
     }
 }

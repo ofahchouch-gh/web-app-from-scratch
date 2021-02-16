@@ -13,7 +13,7 @@
 
 "use strict";
 
-class TChart {
+export default class TChart {
   constructor(targetId, width, height, data) {
     //Canvas Specification came from outside
     this.id = targetId;
