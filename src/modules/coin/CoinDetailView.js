@@ -1,7 +1,6 @@
 import CoinDetailController from './CoinDetailController.js';
 import CoinDetailModel from './CoinDetailModel.js';
 import Router from './../../router/router.js';
-import TChart from  './../../libs/tChart.js';
 
 export default class CoinDetailView {
     currencyOverviewName;
@@ -18,9 +17,6 @@ export default class CoinDetailView {
     renderDetailView(coinToBeDisplayed) {
         this.coinToBeDisplayed = coinToBeDisplayed;
         this.createDetailPanel();
-
-        //test
-        this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
     }
 
     createDetailPanel() {
@@ -53,13 +49,14 @@ export default class CoinDetailView {
               }
 
             flexContainerDomElement.insertAdjacentHTML('beforeend', `
-                <div class="item${elementCounter}" style=":${heightOfFlexContainerChild}%; width: 100%;"></div>
+                <div class="item${elementCounter}" style="height:${heightOfFlexContainerChild}%; width: 100%;"></div>
             `);
 
             elementCounter++;
         }
 
         this.createHeaderInDetailPanel(gridContainerElements);
+        this.createLineChart();
     }
 
     createHeaderInDetailPanel(gridContainerElements) {
@@ -76,29 +73,30 @@ export default class CoinDetailView {
             const coinDetailView = new CoinDetailView();
             coinDetailView.routeToCurrencyOverview();
         });  
-
-        //
-        this.createLineChart();
     }
 
-    createLineChart() {
-        const lineChartData = this.coinDetailController.getLineChartData();
-
-        let targetId1 = "lineChart";
-        let canvas1Width = 1200;
-        let canvas1Height = 600;
-
+    async createLineChart() {
         const mainItemElementInCoinDetailFlexContainer = document.getElementsByClassName('item2')[0];
 
         mainItemElementInCoinDetailFlexContainer.insertAdjacentHTML('beforeend', 
-        `
-            <div id="chart">
-                <div id="lineChart">This Will Be Our line Chart</div>
-            </div>  
-        `);
-    
-        let lineChart = new TChart(targetId1, canvas1Width, canvas1Height, lineChartData);
-        lineChart.drawLineChart({ animation: false });
+            `<div class="ct-chart ct-perfect-fourth"></div>`
+        );
+
+        const cadleSticksOfLastSevenDays = await this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
+
+        let chartData = { labels: [], series: [] };
+        let closePrices = [];
+
+        cadleSticksOfLastSevenDays.forEach(candleStick => {
+            chartData.labels.push(candleStick.openTime);
+            closePrices.push(candleStick.closePrice)
+        });
+        
+        chartData.series.push(closePrices);
+
+        setTimeout(() => {
+            new Chartist.Line('.ct-chart', chartData);
+        }, 50);
     }
 
     routeToCurrencyOverview() {

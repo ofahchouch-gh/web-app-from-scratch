@@ -1,29 +1,17 @@
 export default class CandlestickModel {
     tickerName;
-    openTimeInMs;
+    openTime;
     openPrice;
     closePrice;
-    closeTimeInMs;
+    closeTime;
     bullish;
     typeOfCandlestick;
 
-    constructor(tickerName, openTimeInMs, openPrice, closePrice, closeTimeInMs) {
+    constructor(tickerName, openTime, openPrice, closePrice, closeTime) {
         this.tickerName = tickerName;
-        this.openTimeInMs = openTimeInMs;
+        this.openTime = openTime;
         this.openPrice = openPrice;
         this.closePrice = closePrice;
-        this.closeTimeInMs = closeTimeInMs;
-
-        this.checkIfCandlestickIsBullishOrBearish();
-    }
-
-    checkIfCandlestickIsBullishOrBearish() {
-        if(this.closePrice > this.openPrice) {
-            this.bullish = true;
-        } else {
-            this.bullish = false;
-        }
-
-        return this.bullish;
+        this.closeTime = closeTime;
     }
 }
