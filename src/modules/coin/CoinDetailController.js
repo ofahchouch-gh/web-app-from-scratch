@@ -20,11 +20,9 @@ export default class CoinDetailController {
 
         console.log(fetchedTickerWithAllDetails);
         
-        this.createLineChart();
     }
 
     async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched) {
-        // test
         nameOfTickerToBeFetched = nameOfTickerToBeFetched.replace(/\s/g, '');
         const currentDate = new Date();
         const dateOfYesterday = new Date();
@@ -43,86 +41,85 @@ export default class CoinDetailController {
             limit
         );
         
-        this.createBullishOrBearishCandleSticks(nameOfTickerToBeFetched, fetchedCandleStickDataOfTicker);
+        // this.createBullishOrBearishCandleSticks(nameOfTickerToBeFetched, fetchedCandleStickDataOfTicker);
     }
 
-    createBullishOrBearishCandleSticks(nameOfTicker, fetchedCandleStickDataOfTicker) {
-        let candlesticks = [];
+    // createBullishOrBearishCandleSticks(nameOfTicker, fetchedCandleStickDataOfTicker) {
+    //     let candlesticks = [];
 
-        for (const candleStick of fetchedCandleStickDataOfTicker) {
-            const candlestickModel = new CandlestickModel(nameOfTicker, 
-                candleStick[0], 
-                candleStick[1], 
-                candleStick[4], 
-                candleStick[6]
-            );
+    //     for (const candleStick of fetchedCandleStickDataOfTicker) {
+    //         const candlestickModel = new CandlestickModel(nameOfTicker, 
+    //             candleStick[0], 
+    //             candleStick[1], 
+    //             candleStick[4], 
+    //             candleStick[6]
+    //         );
 
-            const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
-            const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
-            const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
+    //         const candleStickOpenTimeInLocalDate = new Date(candlestickModel.openTimeInMs).toLocaleString();
+    //         const candleStickCloseTimeInLocalDate = new Date(candlestickModel.closeTimeInMs).toLocaleString();
+    //         const candleStickOpenToCloseLocalDateTextMessage = `From ${candleStickOpenTimeInLocalDate} to ${candleStickCloseTimeInLocalDate}`;
             
-            if(candlestickModel.bullish) {
-                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Green');
-            } else {
-                console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
-            }
+    //         if(candlestickModel.bullish) {
+    //             console.log('%c' + candleStickOpenToCloseLocalDateTextMessage + 'with an opening price of ', 'color:' + 'Green');
+    //         } else {
+    //             console.log('%c' + candleStickOpenToCloseLocalDateTextMessage, 'color:' + 'Red');
+    //         }
 
-            candlesticks.push(candlestickModel);
-        }
+    //         candlesticks.push(candlestickModel);
+    //     }
 
-        this.checkIfCandlestickIsAHigherHighOrHigherLow(candlesticks);
-    }
+    //     this.checkIfCandlestickIsAHigherHighOrHigherLow(candlesticks);
+    // }
 
-    checkIfCandlestickIsAHigherHighOrHigherLow(candlesticks) {
-        let previousCandlestick = candlesticks[0];
-        let currentHigherHigh = candlesticks[0];
-        let currentHigherLow = null;
+    // checkIfCandlestickIsAHigherHighOrHigherLow(candlesticks) {
+    //     let previousCandlestick = candlesticks[0];
+    //     let currentHigherHigh = candlesticks[0];
+    //     let currentHigherLow = null;
 
-        let smallestCandleStickWaves = [];
-        let current3CandleStickWave = [];
+    //     let smallestCandleStickWaves = [];
+    //     let current3CandleStickWave = [];
 
-        for(const candlestick of candlesticks) {
-            if (current3CandleStickWave.length <= 1) {
-                current3CandleStickWave.push(candlestick);
-            } else {
-                current3CandleStickWave.push(candlestick);
+    //     for(const candlestick of candlesticks) {
+    //         if (current3CandleStickWave.length <= 1) {
+    //             current3CandleStickWave.push(candlestick);
+    //         } else {
+    //             current3CandleStickWave.push(candlestick);
 
-                const smallest3CandlestickWaveModel = new Smallest3CandlestickWaveModel(
-                    current3CandleStickWave[0],
-                    current3CandleStickWave[1],
-                    current3CandleStickWave[2]
-                );
+    //             const smallest3CandlestickWaveModel = new Smallest3CandlestickWaveModel(
+    //                 current3CandleStickWave[0],
+    //                 current3CandleStickWave[1],
+    //                 current3CandleStickWave[2]
+    //             );
 
-                smallestCandleStickWaves.push(smallest3CandlestickWaveModel);
-                current3CandleStickWave = [];
-            }
+    //             smallestCandleStickWaves.push(smallest3CandlestickWaveModel);
+    //             current3CandleStickWave = [];
+    //         }
 
-            previousCandlestick = candlestick;
-        }
+    //         previousCandlestick = candlestick;
+    //     }
 
-        let previousSmallestCandlestickWave = null;
-        let waveCounter = 1;
-        for (const smallestCandlestickWave of smallestCandleStickWaves) {
-            console.log(`Wave ${waveCounter} of a 3 candlestick long wave is in an uptrend: ${smallestCandlestickWave.checkIfIsInAnUptrend()}`);
+    //     let previousSmallestCandlestickWave = null;
+    //     let waveCounter = 1;
+    //     for (const smallestCandlestickWave of smallestCandleStickWaves) {
+    //         console.log(`Wave ${waveCounter} of a 3 candlestick long wave is in an uptrend: ${smallestCandlestickWave.checkIfIsInAnUptrend()}`);
 
-            if(previousSmallestCandlestickWave) {
-                if (
-                    smallestCandlestickWave.lastCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice &&
-                    smallestCandlestickWave.middleCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice
-                ) {
-                    //
-                }
+    //         if(previousSmallestCandlestickWave) {
+    //             if (
+    //                 smallestCandlestickWave.lastCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice &&
+    //                 smallestCandlestickWave.middleCandlestick.closePrice > previousSmallestCandlestickWave.middleCandlestick.closePrice
+    //             ) {
+    //                 console.log('SELL MOMENT');
+    //             }
 
-                previousSmallestCandlestickWave = smallestCandlestickWave;
-            } else {
-                previousSmallestCandlestickWave = smallestCandlestickWave;
-            }
+    //             previousSmallestCandlestickWave = smallestCandlestickWave;
+    //         } else {
+    //             previousSmallestCandlestickWave = smallestCandlestickWave;
+    //         }
 
-            waveCounter++;
-        }
-    }
+    //         waveCounter++;
+    //     }
+    // }
 
-     // moet weg na testen
      getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -130,7 +127,7 @@ export default class CoinDetailController {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    createLineChart() {
+    getLineChartData() {
         let min = 40000;
         let max = 50000;
 
@@ -153,12 +150,7 @@ export default class CoinDetailController {
           { label: "Aug", value: this.getRandomInt(min, max) },
           { label: "Sep", value: this.getRandomInt(min, max) },
         ];
-      
-        let targetId1 = "lineChart";
-        let canvas1Width = 320;
-        let canvas1Height = 675;
-    
-        let chart1 = new TChart(targetId1, canvas1Width, canvas1Height, data);
-        chart1.drawLineChart({ animation: true });
+
+        return data;
     }
 }

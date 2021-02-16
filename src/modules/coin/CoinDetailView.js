@@ -76,6 +76,29 @@ export default class CoinDetailView {
             const coinDetailView = new CoinDetailView();
             coinDetailView.routeToCurrencyOverview();
         });  
+
+        //
+        this.createLineChart();
+    }
+
+    createLineChart() {
+        const lineChartData = this.coinDetailController.getLineChartData();
+
+        let targetId1 = "lineChart";
+        let canvas1Width = 1200;
+        let canvas1Height = 600;
+
+        const mainItemElementInCoinDetailFlexContainer = document.getElementsByClassName('item2')[0];
+
+        mainItemElementInCoinDetailFlexContainer.insertAdjacentHTML('beforeend', 
+        `
+            <div id="chart">
+                <div id="lineChart">This Will Be Our line Chart</div>
+            </div>  
+        `);
+    
+        let lineChart = new TChart(targetId1, canvas1Width, canvas1Height, lineChartData);
+        lineChart.drawLineChart({ animation: false });
     }
 
     routeToCurrencyOverview() {
