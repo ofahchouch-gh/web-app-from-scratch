@@ -7,10 +7,12 @@ export default class CoinDetailView {
     coinToBeDisplayed;
     router;
     coinDetailController;
+    coinDetailModel;
 
     constructor() {
         this.router = new Router();
         this.coinDetailController = new CoinDetailController();
+        this.coinDetailModel = this.coinDetailController.coinDetailModel;
         this.currencyOverviewName = 'overview';
     }
 
@@ -57,6 +59,7 @@ export default class CoinDetailView {
 
         this.createHeaderInDetailPanel(gridContainerElements);
         this.createLineChart();
+        this.putRecentTradesPanel();
     }
 
     createHeaderInDetailPanel(gridContainerElements) {
@@ -99,9 +102,50 @@ export default class CoinDetailView {
 
         setTimeout(() => {
             new Chartist.Line('.ct-chart', chartData);
-            
+
             document.getElementById('lineChartLoader').style.display = 'none';
         }, 50);
+    }
+
+    async putRecentTradesPanel() {
+        const styleOfSpan = `style="flex: 1; text-align: center;"`;
+
+        await this.sleep(1000);
+        let currentUrl = window.location.href;
+
+        while(currentUrl.indexOf(this.coinToBeDisplayed.replace(/\s/g, '')) >= 0) {
+            currentUrl = window.location.href;
+
+            if(this.coinDetailModel.recentTrades.length > 0) {
+                const coinDetailsElement = document.getElementsByClassName('item3')[0];
+
+                Array.prototype.slice.call(document.getElementsByClassName('recent-trades')).forEach(
+                    function(item) {
+                      item.remove();
+                });
+
+                let divWithRecentTrades = '<div class="recent-trades" style="display: flex; flex-direction: column;">';
+                this.coinDetailModel.recentTrades.forEach(recentTrade => {
+                    divWithRecentTrades += `
+                        <div class="row" style="display: flex;">
+                            <span ${styleOfSpan}>transaction id: ${recentTrade.id }</span>
+                            <span ${styleOfSpan}>price: ${Number(recentTrade.price).toFixed(2) }</span>
+                            <span ${styleOfSpan}>quantity: ${recentTrade.qty }</span>
+                        </div>
+                    `
+                });
+
+                divWithRecentTrades += '</div>';
+
+                coinDetailsElement.insertAdjacentHTML('beforeend', divWithRecentTrades);
+            }
+
+            await this.sleep(200);
+        }
+    }
+
+    sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
     }
 
     routeToCurrencyOverview() {
