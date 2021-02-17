@@ -8,6 +8,7 @@ export default class CoinDetailController {
 
     constructor() {
         this.binanceApiHandler = new BinanceApiHandler();
+        this.coinDetailModel = new CoinDetailModel();
     }
 
     putDetailView() {}
@@ -18,6 +19,17 @@ export default class CoinDetailController {
         const fetchedTickerWithAllDetails = await this.binanceApiHandler.fetchAllDetailsOfTicker(nameOfTickerToBeFetched);
 
         console.log(fetchedTickerWithAllDetails);
+    }
+
+    async fetchRecentTradesList(nameOfTickerToBeFetched) {
+        while(true) { 
+            const recentTrades = await this.binanceApiHandler.fetchRecentTradesList(nameOfTickerToBeFetched);
+            this.coinDetailModel.putRecentTrades(recentTrades);
+
+            console.log(this.coinDetailModel.recentTrades);
+
+            await this.sleep(500);
+        }
     }
 
     async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched) {
@@ -43,6 +55,8 @@ export default class CoinDetailController {
             limit
         );
         
+        this.fetchRecentTradesList(nameOfTickerToBeFetched);
+
         for (const candleStick of fetchedCandleStickDataOfTicker) {
             const openTime = new Date(candleStick[0]).toLocaleTimeString('en-US', dateFormatOptions);
             const closeTime = new Date(candleStick[6]).toLocaleTimeString('en-US', dateFormatOptions);
@@ -58,5 +72,9 @@ export default class CoinDetailController {
         }  
         
         return candleSticks;
+    }
+    
+    sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
     }
 }

@@ -60,4 +60,17 @@ export default class binanceApiHandler {
             console.log('failed to fetch candle stick data of ticker: ', error);
         }
     }
+
+    async fetchRecentTradesList(nameOfTickerToBeFetched) {
+        try {
+            const url = `${this.BINANCE_API_URL_PREFIX}/trades?symbol=${nameOfTickerToBeFetched}&limit=20`;
+
+            const fetchedRecentTradesListApiResponse = await fetch(`${url}`, { method: 'GET' });
+            const fetchedRecentTradesList = await fetchedRecentTradesListApiResponse.json();
+            
+            return fetchedRecentTradesList;
+        } catch(error) {
+            console.log('failed to fetch recent trades of ticker: ', error);
+        }
+    }
 }

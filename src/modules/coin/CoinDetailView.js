@@ -99,6 +99,7 @@ export default class CoinDetailView {
 
         setTimeout(() => {
             new Chartist.Line('.ct-chart', chartData);
+            
             document.getElementById('lineChartLoader').style.display = 'none';
         }, 50);
     }
