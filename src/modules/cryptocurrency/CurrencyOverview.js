@@ -12,9 +12,6 @@ export default class CurrencyOverview {
         this.coinDetailViewSectionName = 'coin';
         this.router = new Router();
         this.currencyOverviewController = new CurrencyOverviewController();
-        
-        //
-        console.log('created new currency overview')
     }
 
     async renderOverview() {

@@ -1,5 +1,4 @@
 import CoinDetailController from './CoinDetailController.js';
-import CoinDetailModel from './CoinDetailModel.js';
 import Router from './../../router/router.js';
 
 export default class CoinDetailView {
@@ -88,32 +87,56 @@ export default class CoinDetailView {
             `
         );
 
-        const cadleSticksOfLastSevenDays = await this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
+        await this.sleep(1000);
+        let currentUrl = window.location.href;
 
-        let chartData = { labels: [], series: [] };
-        let closePrices = [];
+        while(currentUrl.indexOf(this.coinToBeDisplayed.replace(/\s/g, '')) > 0) {
+            currentUrl = window.location.href;
 
-        cadleSticksOfLastSevenDays.forEach(candleStick => {
-            chartData.labels.push(candleStick.openTime);
-            closePrices.push(candleStick.closePrice)
-        });
+            const cadleSticksOfLastSevenDays = await this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
+
+            let chartData = { labels: [], series: [] };
+            let closePrices = [];
+
+            cadleSticksOfLastSevenDays.forEach(candleStick => {
+                chartData.labels.push(candleStick.openTime);
+                closePrices.push(candleStick.closePrice);
+            });
+            
+            chartData.series.push(closePrices);
+
+            setTimeout(() => {
+                new Chartist.Line('.ct-chart', chartData);
+
+                document.getElementById('lineChartLoader').style.display = 'none';
+            }, 50);
+
+            await this.sleep(350);
+        }
         
-        chartData.series.push(closePrices);
-
-        setTimeout(() => {
-            new Chartist.Line('.ct-chart', chartData);
-
-            document.getElementById('lineChartLoader').style.display = 'none';
-        }, 50);
+        Array.prototype.slice.call(mainItemElementInCoinDetailFlexContainer).forEach(
+            function(item) {
+                item.remove();
+        });
     }
 
     async putRecentTradesPanel() {
+        const mainItemElementInCoinDetailFlexContainer = document.getElementsByClassName('item3')[0];
+
+        mainItemElementInCoinDetailFlexContainer.insertAdjacentHTML('afterbegin', 
+            `
+                <aside id="recentTradesLoader"></aside>
+            `
+        );
+
         const styleOfSpan = `style="flex: 1; text-align: center;"`;
 
         await this.sleep(1000);
         let currentUrl = window.location.href;
 
-        while(currentUrl.indexOf(this.coinToBeDisplayed.replace(/\s/g, '')) >= 0) {
+        let recentTradesLoaded = false;
+
+        while(currentUrl.indexOf(this.coinToBeDisplayed.replace(/\s/g, '')) > 0) {
             currentUrl = window.location.href;
 
             if(this.coinDetailModel.recentTrades.length > 0) {
@@ -124,18 +147,41 @@ export default class CoinDetailView {
                       item.remove();
                 });
 
-                let divWithRecentTrades = '<div class="recent-trades" style="display: flex; flex-direction: column;">';
+                let divWithRecentTrades = '<div class="recent-trades" style="display: flex; flex-direction: column; flex: 1;">';
+
+                const recentTradesHeader = `
+                    <div class="row" style="display: flex;">
+                        <span ${styleOfSpan}><h2>Recent trades</h2></span>
+                    </div>
+                `;
+
+                const recentTradesHeading = `
+                    <div class="row" style="display: flex;">
+                        <span ${styleOfSpan}><b>transaction id</b></span>
+                        <span ${styleOfSpan}><b>price (USDT)</b></span>
+                        <span ${styleOfSpan}><b>quantity (Satoshis)</b></span>
+                    </div>
+                `;
+
+                divWithRecentTrades += recentTradesHeader;
+                divWithRecentTrades += recentTradesHeading;
+
                 this.coinDetailModel.recentTrades.forEach(recentTrade => {
                     divWithRecentTrades += `
                         <div class="row" style="display: flex;">
-                            <span ${styleOfSpan}>transaction id: ${recentTrade.id }</span>
-                            <span ${styleOfSpan}>price: ${Number(recentTrade.price).toFixed(2) }</span>
-                            <span ${styleOfSpan}>quantity: ${recentTrade.qty }</span>
+                            <span ${styleOfSpan}>${recentTrade.id }</span>
+                            <span ${styleOfSpan}>$${Number(recentTrade.price).toFixed(2) }</span>
+                            <span ${styleOfSpan}>${recentTrade.qty }</span>
                         </div>
                     `
                 });
 
                 divWithRecentTrades += '</div>';
+
+                if(!recentTradesLoaded) {
+                    document.getElementById('recentTradesLoader').style.display = 'none';
+                    recentTradesLoaded = true;
+                }
 
                 coinDetailsElement.insertAdjacentHTML('beforeend', divWithRecentTrades);
             }
