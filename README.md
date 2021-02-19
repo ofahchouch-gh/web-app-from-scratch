@@ -126,7 +126,36 @@ A Retry-After header is sent with a 418 or 429 responses and will give the numbe
 The limits on the API are based on the IPs, not the API keys.
 
 ## Overview Page
-- :construction:
+- Recent Trades List
+  - GET /api/v3/trades
+  - Get recent trades.
+  - Weight: 1
+  - Parameters:
+    - symbol	STRING	MANDATORY	
+    - limit	INT	NOT MANDATORY	Default 500; max 1000.
 
 ## Coin Detail Page
-- :construction:
+- Kline/Candlestick Data
+  - GET /api/v3/klines
+  - Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
+  - Weight: 1
+  - Parameters:
+    - symbol	STRING	MANDATORY	
+    - interval	ENUM	MANDATORY
+    - startTime	LONG	NOT MANDATORY
+    - endTime	LONG	NOT MANDATORY
+    - limit	INT	NOT MANDATORY	Default 500; max 1000.
+  - Response:
+    - [[
+      -  1499040000000,      // Open time
+      -  "0.01634790",       // Open
+      -  "0.80000000",       // High
+      -  "0.01575800",       // Low
+      -  "0.01577100",       // Close
+      -  "148976.11427815",  // Volume
+      -  1499644799999,      // Close time
+      -  "2434.19055334",    // Quote asset volume
+      -  308,                // Number of trades
+      -  "1756.87402397",    // Taker buy base asset volume
+      -  "28.46694368",      // Taker buy quote asset volume
+      -  "17928899.62484339" // Ignore. ]]

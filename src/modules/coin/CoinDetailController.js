@@ -17,9 +17,6 @@ export default class CoinDetailController {
 
     async fetchAllDetailsOfTicker(nameOfTickerToBeFetched) {
         const fetchedTickerWithAllDetails = await this.binanceApiHandler.fetchAllDetailsOfTicker(nameOfTickerToBeFetched);
-
-        //
-        console.log(fetchedTickerWithAllDetails);
     }
 
     async fetchRecentTradesList(nameOfTickerToBeFetched) {
