@@ -6,7 +6,7 @@ This is my repo for the Web App From Scratch course.
 https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 
 <p align="center">
-  <img src="others/docs/imgs/cryptowallpaper.png" />
+  <img src="src/assets/imgs/readme/cryptocurrencieswallpaper.png" />
 </p>
 
 ## Table of Contents 🗃
