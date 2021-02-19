@@ -45,12 +45,12 @@ More info about the endpoints i am using can be found here: [API](#api-).
 ## Actors & Interaction :pencil2:
 (moet nog geupdate worden)
 <p align="center">
-  <img src="others/docs/imgs/actors.png" />
+  <img src="src/assets/imgs/readme/actors.png" />
 </p>
 
 (moet nog geupdate worden)
 <p align="center">
-  <img src="others/docs/imgs/interaction.png" />
+  <img src="src/assets/imgs/readme/interaction.png" />
 </p>
 
 ## To Do :construction:
@@ -126,6 +126,16 @@ A Retry-After header is sent with a 418 or 429 responses and will give the numbe
 The limits on the API are based on the IPs, not the API keys.
 
 ## Overview Page
+- Current Average Price
+  - GET /api/v3/avgPrice
+  - Current average price for a symbol.
+  - Weight: 1
+  - Parameters:
+    - symbol	STRING	MANDATORY
+  - Response:
+    - { "mins": 5, "price": "9.35751834" }
+
+## Coin Detail Page
 - Recent Trades List
   - GET /api/v3/trades
   - Get recent trades.
@@ -133,8 +143,15 @@ The limits on the API are based on the IPs, not the API keys.
   - Parameters:
     - symbol	STRING	MANDATORY	
     - limit	INT	NOT MANDATORY	Default 500; max 1000.
-
-## Coin Detail Page
+  - Response:
+    - [{
+      -  "id": 28457,
+      -  "price": "4.00000100",
+      -  "qty": "12.00000000",
+      -  "quoteQty": "48.000012",
+      -  "time": 1499865549590,
+      -  "isBuyerMaker": true,
+      -  "isBestMatch": true }]
 - Kline/Candlestick Data
   - GET /api/v3/klines
   - Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
