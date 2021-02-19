@@ -18,13 +18,34 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    border-bottom: 1px solid #DCDCDC;
+    color: white;
+    background-color: #12161C;
+    z-index: -2;
+}
+
+header h2:first-of-type {
+    padding-top: 1vw;
+    z-index: 1;
+}
+
+header::after {
+    background: inherit;
+    top: 0;
+    content: '';
+    width: 100vw;
+    height: 5vw;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: skewY(-1.5deg);
+    transform-origin: 100%;
+    z-index: -2;
 }
 
 main {
     width: 75%;
     height: auto;
+    min-height: 100vh;
 }
 
 section {
@@ -43,7 +64,11 @@ table {
     display: flex;
     flex-direction: column;
     margin-top: 5vh;
-    border-left: 1px solid white;
+    color: white;
+    background-color: #12161C;
+    border-left: 1px solid transparent;
+    border-radius: 5px;
+    padding: 2vw;
 }
 
 tr {
@@ -56,11 +81,10 @@ th {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    border-top: 1px solid #DCDCDC;
-    border-bottom: 1px solid #DCDCDC;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
 }
 
 tbody {
@@ -79,14 +103,15 @@ tr:nth-of-type(1) td {
 
 td {
     text-align: center;
-    border-bottom: 1px solid #DCDCDC;
+    border-bottom: 1px solid transparent;
     padding-top: 1vh;
     padding-bottom: 1vh;
 }
 
 tbody tr:nth-child(1) td:hover {
     cursor: pointer;
-    font-weight: bold;
+    font-weight: bolder;
+    color: white;
 }
 
 main section:first-of-type aside {
@@ -103,11 +128,16 @@ main section:first-of-type aside {
     animation: spin 1s linear infinite;
 }
 
+.item1 {
+    background-color: white;
+}
+
 .item2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 #lineChartLoader {
@@ -123,13 +153,18 @@ main section:first-of-type aside {
 }
 
 #recentTradesLoader {
-    border: 16px solid #DCDCDC;
+    border: 16px solid white;
     border-radius: 50%;
     border-top: 16px solid #181818;
     width: 90px;
     height: 90px;
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
+}
+
+section:first-child {
+    margin-top: 5vw;
+    margin-bottom: 5vw;
 }
   
 section:nth-child(2) {
@@ -147,9 +182,12 @@ section:nth-child(2) {
     flex-direction: column;
     width: 100%;
     height: auto;
-    background-color: white;
+    color: #12161C;
     border: 1px solid #DCDCDC;
     border-radius: 5px;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+    background-color: #12161C;
 }
 
 span {
@@ -162,6 +200,7 @@ span {
 
 #go-back-to-overview:hover {
     text-decoration: underline;
+    font-weight: bolder;
 }
 
 .ct-perfect-fourth {
@@ -190,6 +229,11 @@ span {
     align-items: center;
     margin-top: 2.5vw;
     margin-bottom: 2.5vw;
+    color: white;
+}
+
+.item3 h2 {
+    color: white;
 }
 
 .recent-trades .row:nth-child(2) {
@@ -208,4 +252,35 @@ span {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+footer {
+    width: 100vw;
+    height: 5vw;
+    position: relative;
+    background-color: #12161C;
+}
+
+footer:before {
+    content: "";
+    background: #12161C;
+    width: 100vw;
+    height: 2vw;
+    transform: skewY(2deg);
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+footer::after {
+    content: "";
+    background: #12161C;
+    width: 100vw;
+    height: 2vw;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
 }

@@ -145,10 +145,10 @@ export default class CurrencyOverviewController {
             const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((highestAskPriceOfFetchedTicker - lowestBidPriceOfFetchedTicker)).toFixed(2);
     
             listOfMostPopularCryptoBidPrices.push({ 
-                'Popular crypto ticker name (USDT)': popularCryptoTickerName,
-                'Current avg. lowest bid price ($/USDT)': lowestBidPriceOfFetchedTicker,
-                'Current avg. highest ask price ($/USDT)': highestAskPriceOfFetchedTicker,
-                'Current avg. profit/loss with 1 coin ($/USDT)': potentialProfitOrLossThatCouldBeMade
+                'Popular crypto ticker name ($/USDT)': popularCryptoTickerName,
+                'Current avg. lowest bid price': lowestBidPriceOfFetchedTicker,
+                'Current avg. highest ask price': highestAskPriceOfFetchedTicker,
+                'Current avg. profit/loss with 1 coin': potentialProfitOrLossThatCouldBeMade
             });
         }
     
