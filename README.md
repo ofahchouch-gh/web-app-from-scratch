@@ -54,11 +54,12 @@ More info about the endpoints i am using can be found here: [API](#api-).
 </p>
 
 ## To Do :construction:
-- finalize overview page of top 20 most traded crypto (8 february - 11 february, week 2 of minor)
-- detail page of selected crypto (8 february - 11 february, week 2 of minor)
+- update class & activity diagram (15 february - 19 february, week 2 & 3 of minor)
+- refactor code & code smells (15 february - 19 february, week 2 & 3 of minor)
 
 ## Done :construction_worker:
-- prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1 of minor)
+- prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1, 2 & 3 of minor)
+- detail page of selected crypto (8 february - 19 february, week 2 & 3 of minor)
 
 ## Installing 🔍
 To install this application enter the following into your terminal (currently works only on Linux/Mac based operating systems):
@@ -125,7 +126,7 @@ IP bans are tracked and scale in duration for repeat offenders, from 2 minutes t
 A Retry-After header is sent with a 418 or 429 responses and will give the number of seconds required to wait, in the case of a 429, to prevent a ban, or, in the case of a 418, until the ban is over.
 The limits on the API are based on the IPs, not the API keys.
 
-## Overview Page
+## Overview Component
 - Current Average Price
   - GET /api/v3/avgPrice
   - Current average price for a symbol.
@@ -135,7 +136,7 @@ The limits on the API are based on the IPs, not the API keys.
   - Response:
     - { "mins": 5, "price": "9.35751834" }
 
-## Coin Detail Page
+## Coin Detail Component
 - Recent Trades List
   - GET /api/v3/trades
   - Get recent trades.

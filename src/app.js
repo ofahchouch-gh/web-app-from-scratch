@@ -1,6 +1,6 @@
 import CurrencyOverview from './modules/cryptocurrency/CurrencyOverview.js';
 
-(async function app() {
+(function app() {
     const currencyOverview = new CurrencyOverview();
     currencyOverview.renderOverview();
 })();
