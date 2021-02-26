@@ -1,19 +1,18 @@
-import BinanceApiHandler from '../binance/BinanceApiHandler.js';
+import BinanceApiHandler from '../../api/binance/BinanceApiHandler.js';
 import CoinDetailModel from './CoinDetailModel.js';
 import CandlestickModel from '../shared/models/candlestick/CandlestickModel.js';
+import Sleeper from '../shared/services/Sleeper.js';
 
 export default class CoinDetailController {
     coinDetailModel;
     binanceApiHandler;
+    sleeper;
 
     constructor() {
         this.binanceApiHandler = new BinanceApiHandler();
         this.coinDetailModel = new CoinDetailModel();
+        this.sleeper = new Sleeper();
     }
-
-    putDetailView() {}
-
-    putCoinSection() {}
 
     async fetchAllDetailsOfTicker(nameOfTickerToBeFetched) {
         const fetchedTickerWithAllDetails = await this.binanceApiHandler.fetchAllDetailsOfTicker(nameOfTickerToBeFetched);
@@ -24,7 +23,7 @@ export default class CoinDetailController {
             const recentTrades = await this.binanceApiHandler.fetchRecentTradesList(nameOfTickerToBeFetched);
             this.coinDetailModel.putRecentTrades(recentTrades);
             
-            await this.sleep(500);
+            await this.sleeper.sleep(500);
         }
     }
 
@@ -68,9 +67,5 @@ export default class CoinDetailController {
         }  
         
         return candleSticks;
-    }
-    
-    sleep(time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
     }
 }

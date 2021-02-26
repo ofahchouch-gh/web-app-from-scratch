@@ -1,5 +1,6 @@
 import CoinDetailController from './CoinDetailController.js';
 import Router from './../../router/router.js';
+import Sleeper from '../shared/services/Sleeper.js';
 
 export default class CoinDetailView {
     currencyOverviewName;
@@ -7,12 +8,14 @@ export default class CoinDetailView {
     router;
     coinDetailController;
     coinDetailModel;
+    sleeper;
 
     constructor() {
         this.router = new Router();
         this.coinDetailController = new CoinDetailController();
         this.coinDetailModel = this.coinDetailController.coinDetailModel;
         this.currencyOverviewName = 'overview';
+        this.sleeper = new Sleeper();
     }
 
     renderDetailView(coinToBeDisplayed) {
@@ -87,7 +90,7 @@ export default class CoinDetailView {
             `
         );
 
-        await this.sleep(1000);
+        await this.sleeper.sleep(1000);
         let currentUrl = window.location.href;
 
         while(currentUrl.indexOf(this.coinToBeDisplayed.replace(/\s/g, '')) > 0) {
@@ -111,7 +114,7 @@ export default class CoinDetailView {
                 document.getElementById('lineChartLoader').style.display = 'none';
             }, 50);
 
-            await this.sleep(350);
+            await this.sleeper.sleep(350);
         }
         
         Array.prototype.slice.call(mainItemElementInCoinDetailFlexContainer).forEach(
@@ -131,7 +134,7 @@ export default class CoinDetailView {
 
         const styleOfSpan = `style="flex: 1; text-align: center;"`;
 
-        await this.sleep(1000);
+        await this.sleeper.sleep(1000);
         let currentUrl = window.location.href;
 
         let recentTradesLoaded = false;
@@ -186,12 +189,8 @@ export default class CoinDetailView {
                 coinDetailsElement.insertAdjacentHTML('beforeend', divWithRecentTrades);
             }
 
-            await this.sleep(200);
+            await this.sleeper.sleep(200);
         }
-    }
-
-    sleep(time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
     }
 
     routeToCurrencyOverview() {
