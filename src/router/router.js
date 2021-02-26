@@ -11,6 +11,9 @@ routie('coin/:nameOfCoinToBeDisplayed', (nameOfCoinToBeDisplayed) => {
     document.getElementsByTagName('section')[1].style.display = 'flex';
 });
 
+// UI module gebruiken
+// Toggle class gebruiken op de elementen
+
 export default class Router {
     constructor() {
         window.addEventListener('popstate', function(event) {

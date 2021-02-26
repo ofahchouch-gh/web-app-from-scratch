@@ -191,6 +191,4 @@ export default class CurrencyOverviewController {
 
         return iconAsImgTagOfTickerToBeAddedToTableData;
     }
-
-    filterTable() {}
 }

@@ -58,8 +58,8 @@ More info about the endpoints i am using can be found here: [API](#api-).
 - refactor code & code smells (15 february - 19 february, week 2 & 3 of minor)
 
 ## Done :construction_worker:
-- prototype overview page of top 20 most traded crypto (1 february - 4 february, week 1, 2 & 3 of minor)
-- detail page of selected crypto (8 february - 19 february, week 2 & 3 of minor)
+- Currencies overview component (1 february - 19 february, week 1, 2 & 3 of minor)
+- Coin detail component (8 february - 19 february, week 2 & 3 of minor)
 
 ## Installing 🔍
 To install this application enter the following into your terminal (currently works only on Linux/Mac based operating systems):
