@@ -1,4 +1,4 @@
-import BinanceApiHandler from '../binance/BinanceApiHandler.js';
+import BinanceApiHandler from '../../api/binance/BinanceApiHandler.js';
 import CurrencyOverview from './CurrencyOverview.js';
 
 export default class CurrencyOverviewController {
