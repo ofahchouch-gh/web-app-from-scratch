@@ -28,8 +28,6 @@ export default class CoinDetailController {
     }
 
     async fetchCandleStickDataOfTicker(nameOfTickerToBeFetched) {
-        let candleSticks = [];
-
         nameOfTickerToBeFetched = nameOfTickerToBeFetched.replace(/\s/g, '');
         const currentDate = new Date();
         const amountOfDaysToLookBackInto = 1;
@@ -51,8 +49,8 @@ export default class CoinDetailController {
         );
         
         this.fetchRecentTradesList(nameOfTickerToBeFetched);
-
-        for (const candleStick of fetchedCandleStickDataOfTicker) {
+        
+        const candleSticks = fetchedCandleStickDataOfTicker.map(candleStick => {
             const openTime = new Date(candleStick[0]).toLocaleTimeString('en-US', dateFormatOptions);
             const closeTime = new Date(candleStick[6]).toLocaleTimeString('en-US', dateFormatOptions);
 
@@ -62,9 +60,9 @@ export default class CoinDetailController {
                 candleStick[4], 
                 closeTime
             );
-            
-            candleSticks.push(candlestickModel);
-        }  
+
+            return candlestickModel;
+        });
         
         return candleSticks;
     }

@@ -112,7 +112,7 @@ export default class CurrencyOverview {
         
         if(typeof tableDomElement !== 'undefined') {
             Array.prototype.slice.call(document.getElementsByTagName('table')).forEach(
-                function(item) {
+                (item) => {
                   item.remove();
             });
         }
