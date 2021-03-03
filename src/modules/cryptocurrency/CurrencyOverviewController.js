@@ -25,31 +25,16 @@ export default class CurrencyOverviewController {
     }
 
     addRoutingEventListenersToTableData() {
-        for (let indexOfTickerNameInTableData = 0; indexOfTickerNameInTableData < (this.listOfMostPopularCryptoTickerNames.length); indexOfTickerNameInTableData++) {
-            document.getElementsByTagName("td")[indexOfTickerNameInTableData].addEventListener('click', function (mouseEvent) {
+        this.listOfMostPopularCryptoTickerNames.map((popularCryptoTickerName, index) => {
+            document.getElementsByTagName("td")[index].addEventListener('click', function (mouseEvent) {
                 const currencyOverview = new CurrencyOverview();
-                const tickerNameToBeRoutedTo = mouseEvent.srcElement.innerText;
-                currencyOverview.routeToCoinDetailView(tickerNameToBeRoutedTo);
+                currencyOverview.routeToCoinDetailView(popularCryptoTickerName);
             });  
-        }
+        });
     }
 
     async fetchAllHighestBidAndLowestAskPricesWithProfitOrLossOfMostPopularCrypto() {
         let listOfMostPopularCryptoBidPrices = [];
-        
-        // for(const popularCryptoTickerName of this.listOfMostPopularCryptoTickerNames) {
-        //     const fetchedBidAndAskPriceOfSpecificTicker = await this.binanceApiHandler.fetchBidAndAskPriceOfTicker(popularCryptoTickerName);
-        //     const lowestBidPriceOfFetchedTicker = Number.parseFloat(this.getLowestBidPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
-        //     const highestAskPriceOfFetchedTicker = Number.parseFloat(this.getHighestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
-        //     const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((highestAskPriceOfFetchedTicker - lowestBidPriceOfFetchedTicker)).toFixed(2);
-    
-        //     listOfMostPopularCryptoBidPrices.push({ 
-        //         'Popular crypto ticker name ($/USDT)': popularCryptoTickerName,
-        //         'Current avg. lowest bid price': lowestBidPriceOfFetchedTicker,
-        //         'Current avg. highest ask price': highestAskPriceOfFetchedTicker,
-        //         'Current avg. profit/loss with 1 coin': potentialProfitOrLossThatCouldBeMade
-        //     });
-        // }
 
         const listOfMostPopularCryptoTickerNamesPromises = this.listOfMostPopularCryptoTickerNames.map(async popularCryptoTickerName => {
             const fetchedBidAndAskPriceOfSpecificTicker = await this.binanceApiHandler.fetchBidAndAskPriceOfTicker(popularCryptoTickerName);
@@ -57,12 +42,14 @@ export default class CurrencyOverviewController {
             const highestAskPriceOfFetchedTicker = Number.parseFloat(this.getHighestAskPriceOfFetchedTicker(fetchedBidAndAskPriceOfSpecificTicker)).toFixed(2);
             const potentialProfitOrLossThatCouldBeMade = Number.parseFloat((highestAskPriceOfFetchedTicker - lowestBidPriceOfFetchedTicker)).toFixed(2);
             
-            return { 
+            const popularCryptoCurrency = { 
                 'Popular crypto ticker name ($/USDT)': popularCryptoTickerName,
                 'Current avg. lowest bid price': lowestBidPriceOfFetchedTicker,
                 'Current avg. highest ask price': highestAskPriceOfFetchedTicker,
                 'Current avg. profit/loss with 1 coin': potentialProfitOrLossThatCouldBeMade
             };
+
+            return popularCryptoCurrency;
         });
 
         await this.sleeper.sleep(2000);
