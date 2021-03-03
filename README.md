@@ -14,6 +14,7 @@ https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
 * [Actors & Interaction](#actors--interaction-pencil2)
 * [To Do](#to-do-construction)
 * [Done](#done-construction_worker)
+* [Libraries](#libraries-)
 * [Installing](#installing-)
 * [API](#api-)
   * [Overview Page](#overview-page)
@@ -26,40 +27,34 @@ i can find an overview of the top 20 cryptocurrencies. The cryptocurrencies will
 I chose this idea because i like crypto and the idea behind blockchain. The data i use comes from the [Binance Spot Api](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md).
 The Binance API is created by the Binance exchange. Everything which can be done manually on their web app related to spot trading can be done/automated with the API as well.
 
-Examples:
+The app will have the current features:
 
-- fetchTicker
-- fetchCurrencies
-- fetchBalance
-- createOrder
-- cancelOrder
-- fetchOrder
-- fetchOrders
-- fetchOpenOrders
-- fetchClosedOrders
-- deposit
-- withdraw
+- current avg low & highest bid/ask price of top 20 most popular crypto to trade with
+- current avg profit/loss with 1 coin if traded at that moment
+- live line chart of selected popular crypto 
+- recent trades of selected popular crypto
 
 More info about the endpoints i am using can be found here: [API](#api-).
 
 ## Actors & Interaction :pencil2:
-(moet nog geupdate worden)
 <p align="center">
   <img src="src/assets/imgs/readme/actors.png" />
 </p>
 
-(moet nog geupdate worden)
 <p align="center">
   <img src="src/assets/imgs/readme/interaction.png" />
 </p>
 
 ## To Do :construction:
-- update class & activity diagram (15 february - 19 february, week 2 & 3 of minor)
-- refactor code & code smells (15 february - 19 february, week 2 & 3 of minor)
+- error exceptions, refactor & code smells (1 march - 5 march, 4 of minor)
 
 ## Done :construction_worker:
 - Currencies overview component (1 february - 19 february, week 1, 2 & 3 of minor)
 - Coin detail component (8 february - 19 february, week 2 & 3 of minor)
+
+## Libraries :card_file_box:
+- Routie http://projects.jga.me/routie/
+- Chartist https://gionkunz.github.io/chartist-js/
 
 ## Installing 🔍
 To install this application enter the following into your terminal (currently works only on Linux/Mac based operating systems):
