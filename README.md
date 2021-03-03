@@ -1,9 +1,9 @@
-# Web App From Scratch @cmda-minor-web 20-21 ⚙️
+# Top 20 Crypto tracker @cmda-minor-web 20-21 ⚙️
 
 This is my repo for the Web App From Scratch course.
 
 ## Live :globe_with_meridians:
-https://ofahchouch-gh.github.io/web-app-from-scratch-2021/
+ https://ofahchouch-gh.github.io/top-20-crypto-tracker
 
 <p align="center">
   <img src="src/assets/imgs/readme/cryptocurrencieswallpaper.png" />
@@ -59,9 +59,9 @@ More info about the endpoints i am using can be found here: [API](#api-).
 ## Installing 🔍
 To install this application enter the following into your terminal (currently works only on Linux/Mac based operating systems):
 ```
-git clone https://github.com/ofahchouch-gh/ofahchouch-gh.web-app-from-scratch.github.io.git
+git clone https://github.com/ofahchouch-gh/ofahchouch-gh.top-20-crypto-tracker.github.io.git
 
-cd ofahchouch-gh.web-app-from-scratch.github.io
+cd ofahchouch-gh.top-20-crypto-tracker.github.io
 
 (now serve the site: https://www.npmjs.com/package/live-server)
 ```
