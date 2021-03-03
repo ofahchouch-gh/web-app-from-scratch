@@ -99,11 +99,13 @@ export default class CoinDetailView {
             const cadleSticksOfLastSevenDays = await this.coinDetailController.fetchCandleStickDataOfTicker(this.coinToBeDisplayed);
 
             let chartData = { labels: [], series: [] };
-            let closePrices = [];
 
-            cadleSticksOfLastSevenDays.forEach(candleStick => {
-                chartData.labels.push(candleStick.openTime);
-                closePrices.push(candleStick.closePrice);
+            chartData.labels = cadleSticksOfLastSevenDays.map(candleStick => {
+                return candleStick.openTime;
+            });
+
+            const closePrices = cadleSticksOfLastSevenDays.map(candleStick => {
+                return candleStick.closePrice;
             });
             
             chartData.series.push(closePrices);
@@ -117,10 +119,9 @@ export default class CoinDetailView {
             await this.sleeper.sleep(350);
         }
         
-        Array.prototype.slice.call(mainItemElementInCoinDetailFlexContainer).forEach(
-            function(item) {
-                item.remove();
-        });
+        Array.prototype.slice.call(mainItemElementInCoinDetailFlexContainer).reduce((accumulator, currentItem) => { 
+            return accumulator - currentItem;
+        }, 0);
     }
 
     async putRecentTradesPanel() {
@@ -146,9 +147,10 @@ export default class CoinDetailView {
                 const coinDetailsElement = document.getElementsByClassName('item3')[0];
 
                 Array.prototype.slice.call(document.getElementsByClassName('recent-trades')).forEach(
-                    function(item) {
+                    (item) => {
                       item.remove();
-                });
+                    }
+                );
 
                 let divWithRecentTrades = '<div class="recent-trades" style="display: flex; flex-direction: column; flex: 1;">';
 
@@ -168,7 +170,7 @@ export default class CoinDetailView {
 
                 divWithRecentTrades += recentTradesHeader;
                 divWithRecentTrades += recentTradesHeading;
-
+                
                 this.coinDetailModel.recentTrades.forEach(recentTrade => {
                     divWithRecentTrades += `
                         <div class="row" style="display: flex;">
