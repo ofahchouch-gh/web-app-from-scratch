@@ -2,9 +2,6 @@
 
 This is my repo for the Web App From Scratch course.
 
-## Live :globe_with_meridians:
- https://ofahchouch-gh.github.io/top-20-crypto-tracker
-
 <p align="center">
   <img src="src/assets/imgs/readme/cryptocurrencieswallpaper.png" />
 </p>
