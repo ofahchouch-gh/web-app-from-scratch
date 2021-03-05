@@ -1,4 +1,4 @@
-# Top 20 Crypto tracker @cmda-minor-web 20-21 ⚙️
+# Web App From Scratch @cmda-minor-web 20-21 ⚙️
 
 This is my repo for the Web App From Scratch course.
 
